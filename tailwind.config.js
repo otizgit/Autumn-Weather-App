@@ -10,6 +10,7 @@ export default {
       colors: {
         purewhite: "hsla(0, 0%, 100%, 1)",
         white: "hsla(0, 0%, 90%, 1)",
+        darkGrey: "hsla(0, 0%, 0%, 1)",
       },
     },
   },
