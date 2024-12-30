@@ -7,6 +7,10 @@ export default {
         Oswald: ["Oswald", "Arial"],
         urbanist: ["Urbanist", "system-ui", "sans-serif"],
       },
+      colors: {
+        purewhite: "hsla(0, 0%, 100%, 1)",
+        white: "hsla(0, 0%, 90%, 1)",
+      },
     },
   },
   plugins: [],

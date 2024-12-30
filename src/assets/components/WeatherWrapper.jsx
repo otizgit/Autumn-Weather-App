@@ -25,8 +25,19 @@ export default function WeatherWrapper({ weather }) {
     minute: "2-digit",
   });
 
+  function convertToTitleDescription(str) {
+    return str
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
+  const titledCaseDescription = convertToTitleDescription(
+    weather.weather[0].description
+  );
+
   return (
-    <div className="container min-h-screen max-w-[100vw] relative grid place-items-center">
+    <div className="container min-h-screen max-w-[100vw] relative grid place-items-center py-10">
       <img src={blueSky} className="absolute inset-0 w-full h-full" alt="" />
       <img
         className="absolute w-[100px] top-10 left-10"
@@ -68,7 +79,7 @@ export default function WeatherWrapper({ weather }) {
           </div>
         </div>
 
-        <div className="flex items-center">
+        <div className="flex items-center gap-3">
           <WeatherIcon
             iconCode={weather.weather[0].icon}
             description={weather.weather[0].description}
@@ -78,15 +89,19 @@ export default function WeatherWrapper({ weather }) {
               {weather.main.temp}
               <sup className=" text-[2rem] font-Oswald font-extrabold">°c</sup>
             </h1>
-            <p>{weather.weather[0].description}</p>
+            <p className="text-white -translate-y-2">{titledCaseDescription}</p>
+          </div>
+          <div className="text-white"> 
+            <div className="bg-[#116aa2] mb-2 px-4 text-[0.8rem] flex items-center gap-8 rounded-full">
+              <p>H</p>
+              <p>{weather.main.temp_max}</p>
+            </div>
+            <div className="bg-[#116aa2] px-4 text-[0.8rem] flex items-center gap-8 rounded-full">
+              <p>L</p>
+              <p>{weather.main.temp_min}</p>
+            </div>
           </div>
         </div>
-        <p>
-          <strong>Temperature:</strong>
-        </p>
-        <p>
-          <strong>Weather:</strong> {weather.weather[0].description}
-        </p>
         <p>
           <strong>Humidity:</strong> {weather.main.humidity}%
         </p>
