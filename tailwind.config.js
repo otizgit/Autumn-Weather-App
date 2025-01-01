@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        Oswald: ["Oswald", "Arial"],
+        Oswald: ["Cinzel", "Arial"],
         urbanist: ["Urbanist", "system-ui", "sans-serif"],
       },
       colors: {

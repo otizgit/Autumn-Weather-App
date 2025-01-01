@@ -4,17 +4,54 @@ import cloudTwo from "../img/cloud2.png";
 import cloudThree from "../img/cloud3.png";
 import cloudFour from "../img/cloud4.png";
 import blueSky from "../img/bluesky.jpg";
+import tornado from "../img/tornado.png";
+import fog from "../img/fog.png";
+import snow from "../img/snow.png";
+import thunderStorm from "../img/thunder-storm.png";
+import lightRain from "../img/light-rain.png";
+import fewClouds from "../img/few-clouds.png";
+import clearSky from "../img/clear-sky.png";
+import brokenClouds from "../img/broken-clouds.png";
+import randomWeather from "../img/random-weather.png";
 import { Icon } from "@iconify/react/dist/iconify.cjs";
-import WeatherIcon from "./WeatherIcon";
+import WeatherNav from "./WeatherNav";
 
 export default function WeatherWrapper({ weather }) {
+  function getWeatherIcon(description) {
+    switch (description) {
+      case "clear sky":
+        return clearSky;
+      case "few clouds":
+        return fewClouds;
+      case "scattered clouds":
+      case "broken clouds":
+      case "overcast clouds":
+        return brokenClouds;
+      case "light rain":
+      case "moderate rain":
+        return lightRain;
+      case "heavy intensity rain":
+      case "thunderstorm":
+        return thunderStorm;
+      case "snow":
+      case "light snow":
+        return snow``;
+      case "mist":
+      case "fog":
+        return fog;
+      case "tornado":
+        return tornado;
+      default:
+        return randomWeather;
+    }
+  }
+
   const displayNames = new Intl.DisplayNames(["en"], { type: "region" });
   const countryName = displayNames.of(weather.sys.country);
 
   const localTimeInMs = (weather.dt + weather.timezone) * 1000;
   const localDate = new Date(localTimeInMs);
   const options = {
-    weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -37,82 +74,59 @@ export default function WeatherWrapper({ weather }) {
   );
 
   return (
-    <div className="container min-h-screen max-w-[100vw] relative py-[5rem]">
-      <img src={blueSky} className="absolute inset-0 w-full h-full" alt="" />
-      <img
-        className="absolute w-[100px] top-10 left-10"
-        src={cloudFour}
-        alt=""
-      />
-      <img
-        className="absolute w-[100px] left-[40%] bottom-2 top-5"
-        src={cloudOne}
-        alt=""
-      />
-      <img className="fixed w-[110px] -right-10 top-5" src={cloudTwo} alt="" />
-      {/* <img className="absolute w-[110px] bottom-5 right-10" src={cloudFour} alt="" /> */}
-
-      <div className="relative z-20 backdrop-blur-sm shadow-lg glass p-5 rounded-xl max-width">
-        <div className="mb-6 flex items-center justify-between">
-          <div className="relative rounded-sm overflow-hidden w-[300px]">
-            <Icon
-              className="absolute top-1/2 -translate-y-1/2 left-[0.45rem] text-[1.3rem]"
-              icon="iconamoon:search-light"
-            />
-            <input
-              className="bg-[#116aa2] pl-10 py-2 rounded-lg w-full outline-none text-white placeholder:text-white"
-              type="text"
-              placeholder="Search for location"
-            />
-          </div>
+    <div className="container min-h-screen max-w-[100vw] relative py-[3rem]">
+      <div className="max-width">
+        <WeatherNav />
+        <div className="relative z-20 backdrop-blur-sm shadow-lg glass p-5 rounded-xl">
           <div>
-            <div>ENG</div>
+            <div className="flex items-center gap-1 mb-1">
+              <Icon
+                className="text-white text-[1.1rem]"
+                icon="gridicons:location"
+              />
+              <div>
+                <h1 className="font-medium custom-fz">{`${weather.name}, ${countryName}`}</h1>
+              </div>
+            </div>
+            <div className="flex items-center gap-1 custom-fz">
+              <p className="text-white">{formattedDate}</p>
+              <p className="text-white">{formattedTime}</p>
+            </div>
           </div>
-        </div>
 
-        <div className="text-white">
-          <div className="flex items-center gap-1 mb-1">
-            <Icon className="text-white text-[1.5rem]" icon="gridicons:location" />
+          <div className="flex items-center gap-3">
+            <img
+              className="w-[70px]"
+              src={getWeatherIcon(weather.weather[0].description)}
+              alt=""
+            />
             <div>
-              <h1 className="text-white font-extrabold font-Oswald text-[1.3rem]">{`${weather.name}, ${countryName}`}</h1>
+              <h1 className="text-[3rem] font-medium">
+                {weather.main.temp}
+                <sup className=" text-[2rem]">°</sup>
+              </h1>
+              <p className="-translate-y-2 text-[0.85rem] custom-fz">
+                {titledCaseDescription}
+              </p>
+            </div>
+            <div className="text-white">
+              <div className="bg-[#116aa2] mb-2 px-4 text-[0.8rem] flex items-center gap-3 rounded-full">
+                <p className="text-white">H</p>
+                <p className="text-white">{weather.main.temp_max}°</p>
+              </div>
+              <div className="bg-[#116aa2] px-4 text-[0.8rem] flex items-center gap-3 rounded-full">
+                <p className="text-white">L</p>
+                <p className="text-white">{weather.main.temp_min}°</p>
+              </div>
             </div>
           </div>
-          <div className="flex items-center gap-1">
-            <p className="text-white">{formattedDate}</p>
-            <Icon icon="radix-icons:dot-filled" width="16" height="16" />
-            <p className="text-white">{formattedTime}</p>
-          </div>
+          <p>
+            <strong>Humidity:</strong> {weather.main.humidity}%
+          </p>
+          <p>
+            <strong>Wind Speed:</strong> {weather.wind.speed} m/s
+          </p>
         </div>
-
-        <div className="flex items-center gap-3">
-          <WeatherIcon
-            iconCode={weather.weather[0].icon}
-            description={weather.weather[0].description}
-          />
-          <div>
-            <h1 className="text-[3.2rem] font-Oswald font-extrabold">
-              {weather.main.temp}
-              <sup className=" text-[2rem] font-Oswald font-extrabold">°c</sup>
-            </h1>
-            <p className="-translate-y-2 text-[0.85rem]">{titledCaseDescription}</p>
-          </div>
-          <div className="text-white">
-            <div className="bg-[#116aa2] mb-2 px-4 text-[0.8rem] flex items-center gap-8 rounded-full">
-              <p className="text-white">H</p>
-              <p className="text-white">{weather.main.temp_max}</p>
-            </div>
-            <div className="bg-[#116aa2] px-4 text-[0.8rem] flex items-center gap-8 rounded-full">
-              <p className="text-white">L</p>
-              <p className="text-white">{weather.main.temp_min}</p>
-            </div>
-          </div>
-        </div>
-        <p>
-          <strong>Humidity:</strong> {weather.main.humidity}%
-        </p>
-        <p>
-          <strong>Wind Speed:</strong> {weather.wind.speed} m/s
-        </p>
       </div>
     </div>
   );
