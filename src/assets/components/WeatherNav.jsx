@@ -48,20 +48,20 @@ export default function WeatherNav() {
           icon="iconamoon:search-light"
         />
         <input
-          className="glass pl-[2.6rem] pr-7 py-3 w-full custom-fz outline-none text-white placeholder:text-white"
+          className="glass pl-[2.6rem] pr-7 py-2 w-full custom-fz outline-none text-white placeholder:text-white"
           type="text"
           placeholder="Search for location"
         />
       </div>
-      <div>
-        <div className="flex items-center glass rounded-full gap-2 pr-1 border-style">
-          {/* <p className="custom-fz">ENG</p> */}
-          <img className="w-[22px]" src={englandFlag} alt="flag of england" />
+      <div className="flex items-center gap-6">
+        <div className="flex items-center glass rounded-full gap-3 px-3 py-2 border-style">
+          <img className="w-[1.1rem]" src={englandFlag} alt="flag of england" />
           <Icon className="text-[1rem]" icon="ph:caret-down-bold" />
         </div>
 
-        <div>
-          
+        <div className="flex items-center glass border-style rounded-full overflow-hidden custom-fz">
+          <button className="px-5 py-2 rounded-full bg-primary">°C</button>
+          <button className="px-5 py-2 rounded-full">°F</button>
         </div>
       </div>
     </div>
