@@ -42,6 +42,9 @@
   .small-fz {
     @apply text-[0.7rem];
   }
+  .smaller-fz {
+    @apply text-[0.75rem];
+  }
   .border-style {
     @apply border-[0.1em] border-[#9a9a9a6d];
   }

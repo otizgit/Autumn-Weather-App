@@ -156,7 +156,7 @@ export default function WeatherNav({
           </div>
         </div>
 
-        <div className="flex items-center glass border-style font-medium rounded-full overflow-hidden custom-fz">
+        <div className="flex items-center glass border-style font-medium rounded-full overflow-hidden small-fz">
           <button
             onClick={setToMetric}
             className={`px-4 paddingY rounded-tl-full rounded-bl-full border-r-[0.1em] border-[#9a9a9a6d] ${

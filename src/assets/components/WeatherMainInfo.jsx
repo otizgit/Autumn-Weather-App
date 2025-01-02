@@ -148,9 +148,9 @@ export default function WeatherMainInfo({ weather }) {
             <h1 className="font-medium custom-fz">{`${weather.name}, ${countryName}`}</h1>
           </div>
         </div>
-        <div className="flex items-center gap-1 custom-fz">
-          <p className="text-white">{formattedDate}</p>
-          <p className="text-white">{formattedTime}</p>
+        <div className="flex items-center gap-1 smaller-fz">
+          <p className="text-lightGrey">{formattedDate}</p>
+          <p className="text-lightGrey">{formattedTime}</p>
         </div>
       </div>
 
