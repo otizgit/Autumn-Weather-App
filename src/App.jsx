@@ -4,12 +4,8 @@ import LoadingScreen from "./assets/components/LoadingScreen";
 import WeatherWrapper from "./assets/components/WeatherWrapper";
 
 export default function App() {
-  // const language = navigator.language || navigator.userLanguage;
-  // const lang = language.slice(0, 2);
-  // console.log(lang)
-
-  const lang = "en";
-
+  const [language, setLanguage] = useState("en");
+  const [unit, setUnit] = useState("metric");
   const [weather, setWeather] = useState(null);
 
   async function fetchWeatherData() {
@@ -20,9 +16,10 @@ export default function App() {
           params: {
             // lat: 40.7128,
             // lon: -74.006,
-            q: "Lagos",
+            q: "Chicago",
             appid: "644e8f48a2d7e612cd94f5dc157eb72c",
-            units: "metric",
+            units: unit,
+            lang: language,
           },
         }
       );
@@ -35,11 +32,26 @@ export default function App() {
   useEffect(() => {
     fetchWeatherData();
     console.log(weather);
-  }, []);
+  }, [unit, language]);
+
+  const changeLanguage = (lang) => {
+    setLanguage(lang);
+  };
 
   return (
     <div>
-      {weather ? <WeatherWrapper weather={weather} /> : <LoadingScreen />}
+      {weather ? (
+        <WeatherWrapper
+          weather={weather}
+          unit={unit}
+          setUnit={setUnit}
+          language={language}
+          setLanguage={setLanguage}
+          changeLanguage={changeLanguage}
+        />
+      ) : (
+        <LoadingScreen />
+      )}
     </div>
   );
 }

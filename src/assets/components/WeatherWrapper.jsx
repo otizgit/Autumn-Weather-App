@@ -16,7 +16,14 @@ import randomWeather from "../img/random-weather.png";
 import { Icon } from "@iconify/react/dist/iconify.cjs";
 import WeatherNav from "./WeatherNav";
 
-export default function WeatherWrapper({ weather }) {
+export default function WeatherWrapper({
+  weather,
+  unit,
+  setUnit,
+  language,
+  setLanguage,
+  changeLanguage,
+}) {
   function getWeatherIcon(description) {
     switch (description) {
       case "clear sky":
@@ -76,7 +83,13 @@ export default function WeatherWrapper({ weather }) {
   return (
     <div className="container min-h-screen max-w-[100vw] relative py-[3rem]">
       <div className="max-width">
-        <WeatherNav />
+        <WeatherNav
+          unit={unit}
+          setUnit={setUnit}
+          language={language}
+          setLangauge={setLanguage}
+          changeLanguage={changeLanguage}
+        />
         <div className="relative z-20 backdrop-blur-sm shadow-lg glass p-5 rounded-xl">
           <div>
             <div className="flex items-center gap-1 mb-1">

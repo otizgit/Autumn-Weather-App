@@ -39,7 +39,13 @@
   .custom-fz {
     @apply text-[0.86rem];
   }
+  .small-fz {
+    @apply text-[0.7rem];
+  }
   .border-style {
     @apply border-[0.1em] border-[#9a9a9a6d];
+  }
+  .paddingY {
+    @apply py-[0.35rem]
   }
 }
