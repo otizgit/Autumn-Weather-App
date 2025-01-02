@@ -32,7 +32,7 @@ export default function App() {
   useEffect(() => {
     fetchWeatherData();
     console.log(weather);
-  }, [unit, language]);
+  }, [unit]);
 
   const changeLanguage = (lang) => {
     setLanguage(lang);
