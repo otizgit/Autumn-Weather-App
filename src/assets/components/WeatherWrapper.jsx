@@ -8,7 +8,6 @@ export default function WeatherWrapper({
   unit,
   setUnit,
   language,
-  setLanguage,
   changeLanguage,
 }) {
   return (
