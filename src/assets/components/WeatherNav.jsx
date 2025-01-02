@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.cjs";
 import englandFlag from "../img/flags/english.png";
 import spainFlag from "../img/flags/spanish.png";
@@ -6,14 +6,38 @@ import chineseFlag from "../img/flags/chinese.png";
 import frenchFlag from "../img/flags/french.png";
 import italianFlag from "../img/flags/italian.png";
 import russianFlag from "../img/flags/russian.png";
+import axios from "axios";
 
 export default function WeatherNav({
+  setWeather,
   unit,
   setUnit,
   language,
-  setLangauge,
   changeLanguage,
 }) {
+  const [location, setLocation] = useState("");
+
+  async function fetchWeatherData() {
+    try {
+      const response = await axios.get(
+        "https://api.openweathermap.org/data/2.5/weather",
+        {
+          params: {
+            // lat: 40.7128,
+            // lon: -74.006,
+            q: location,
+            appid: "644e8f48a2d7e612cd94f5dc157eb72c",
+            units: unit,
+            lang: language,
+          },
+        }
+      );
+      setWeather(response.data);
+    } catch (error) {
+      console.error("Error fetching weather data:", error);
+    }
+  }
+
   const flags = [
     {
       lang: "English",
@@ -47,6 +71,10 @@ export default function WeatherNav({
     },
   ];
 
+  const [isOpen, setOpen] = useState(false);
+
+  const defaultFlag = flags.filter((flag) => flag.shortLang === language);
+
   const setToStandard = () => {
     setUnit("standard");
   };
@@ -54,14 +82,23 @@ export default function WeatherNav({
     setUnit("metric");
   };
 
+  const toggleLangDisplay = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
   return (
     <div className="mb-6 flex items-center justify-between">
       <div className="relative rounded-full overflow-hidden border-style w-[300px]">
         <Icon
-          className="absolute top-1/2 -translate-y-1/2 left-[0.75rem] text-[1.3rem]"
+          className="absolute top-1/2 -translate-y-1/2 left-[0.75rem] text-[1.1rem]"
           icon="iconamoon:search-light"
         />
         <input
+          value={location}
+          onChange={(e) => {
+            setLocation(e.target.value);
+            console.log(e.target.value);
+          }}
           className="glass pl-[2.6rem] pr-7 paddingY w-full custom-fz outline-none text-white placeholder:text-white"
           type="text"
           placeholder="Search for location"
@@ -69,21 +106,34 @@ export default function WeatherNav({
       </div>
       <div className="flex items-center gap-6">
         <div className="relative">
-          <button className="flex items-center glass rounded-full gap-3 px-3 paddingY border-style">
-            <img
-              className="w-[1.1rem]"
-              src={englandFlag}
-              alt="flag of england"
-            />
+          <button
+            onClick={toggleLangDisplay}
+            className="flex items-center glass rounded-full gap-2 px-2 paddingY border-style"
+          >
+            {defaultFlag.map((flag) => (
+              <img
+                className="w-[1.1rem]"
+                src={flag.flag}
+                alt={`${flag.lang} flag`}
+              />
+            ))}
+            <img />
             <Icon className="text-[1rem]" icon="ph:caret-down-bold" />
           </button>
 
-          <div className="absolute top-[130%] -left-6 -right-6 bottom-0 z-30">
+          <div
+            className={`absolute top-[130%] -left-6 -right-6 bottom-0 z-30 ${
+              isOpen ? "block" : "hidden"
+            }`}
+          >
             {flags.map((flag, index) => {
               return (
                 <div key={index} className="glass border-style rounded-md mb-1">
                   <button
-                    onClick={() => changeLanguage(flag.shortLang)}
+                    onClick={() => {
+                      changeLanguage(flag.shortLang);
+                      toggleLangDisplay();
+                    }}
                     className="flex items-center pl-2 w-full hover:bg-primary gap-3 custom-fz py-2"
                   >
                     <img

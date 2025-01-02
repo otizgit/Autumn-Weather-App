@@ -18,6 +18,7 @@ import WeatherNav from "./WeatherNav";
 
 export default function WeatherWrapper({
   weather,
+  setWeather,
   unit,
   setUnit,
   language,
@@ -150,10 +151,10 @@ export default function WeatherWrapper({
     <div className="container min-h-screen max-w-[100vw] relative py-[3rem]">
       <div className="max-width">
         <WeatherNav
+          setWeather={setWeather}
           unit={unit}
           setUnit={setUnit}
           language={language}
-          setLangauge={setLanguage}
           changeLanguage={changeLanguage}
         />
         <div className="relative z-20 backdrop-blur-sm shadow-lg glass p-5 rounded-xl">

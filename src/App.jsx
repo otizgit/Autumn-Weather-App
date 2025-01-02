@@ -31,7 +31,6 @@ export default function App() {
 
   useEffect(() => {
     fetchWeatherData();
-    console.log(weather);
   }, [unit, language]);
 
   const changeLanguage = (lang) => {
@@ -43,10 +42,10 @@ export default function App() {
       {weather ? (
         <WeatherWrapper
           weather={weather}
+          setWeather={setWeather}
           unit={unit}
           setUnit={setUnit}
           language={language}
-          setLanguage={setLanguage}
           changeLanguage={changeLanguage}
         />
       ) : (
