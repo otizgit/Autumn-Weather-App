@@ -16,7 +16,7 @@ export default function App() {
           params: {
             // lat: 40.7128,
             // lon: -74.006,
-            q: "Chicago",
+            q: "Jos",
             appid: "644e8f48a2d7e612cd94f5dc157eb72c",
             units: unit,
             lang: language,

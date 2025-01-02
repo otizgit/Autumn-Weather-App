@@ -4,7 +4,6 @@ import englandFlag from "../img/flags/english.png";
 import spainFlag from "../img/flags/spanish.png";
 import chineseFlag from "../img/flags/chinese.png";
 import frenchFlag from "../img/flags/french.png";
-import germanFlag from "../img/flags/german.png";
 import italianFlag from "../img/flags/italian.png";
 import russianFlag from "../img/flags/russian.png";
 
@@ -35,11 +34,6 @@ export default function WeatherNav({
       lang: "Français",
       flag: frenchFlag,
       shortLang: "fr",
-    },
-    {
-      lang: "Deutsch",
-      flag: germanFlag,
-      shortLang: "de",
     },
     {
       lang: "Italia",

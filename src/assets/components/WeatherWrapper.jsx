@@ -27,23 +27,89 @@ export default function WeatherWrapper({
   function getWeatherIcon(description) {
     switch (description) {
       case "clear sky":
+      case "cielo claro":
+      case "晴":
+      case "ciel dégagé":
+      case "cielo sereno":
+      case "ясное небо":
         return clearSky;
       case "few clouds":
+      case "pocas nubes":
+      case "少云":
+      case "peu nuageux":
+      case "poche nuvole":
+      case "малооблачно":
         return fewClouds;
       case "scattered clouds":
+      case "nubes dispersas":
+      case "多云":
+      case "nuages dispersés":
+      case "nubi sparse":
+      case "рассеянные облака":
+        return brokenClouds;
       case "broken clouds":
+      case "nubes rotas":
+      case "多云":
+      case "nuages fragmentés":
+      case "nubi frammentate":
+      case "облачно":
+        return brokenClouds;
       case "overcast clouds":
+      case "nublado":
+      case "阴":
+      case "ciel couvert":
+      case "cielo coperto":
+      case "пасмурно":
         return brokenClouds;
       case "light rain":
-      case "moderate rain":
+      case "lluvia ligera":
+      case "小雨":
+      case "pluie légère":
+      case "pioggia leggera":
+      case "небольшой дождь":
         return lightRain;
-      case "heavy intensity rain":
+      case "moderate rain":
+      case "lluvia moderada":
+      case "中雨":
+      case "pluie modérée":
+      case "pioggia moderata":
+      case "умеренный дождь":
+        return lightRain;
+      case "heavy rain":
+      case "lluvia intensa":
+      case "大雨":
+      case "forte pluie":
+      case "pioggia intensa":
+      case "сильный дождь":
+        return thunderStorm;
       case "thunderstorm":
+      case "tormenta eléctrica":
+      case "雷暴":
+      case "orage":
+      case "temporale":
+      case "гроза":
         return thunderStorm;
       case "snow":
+      case "nieve":
+      case "雪":
+      case "neige":
+      case "neve":
+      case "снег":
+        return snow;
       case "light snow":
-        return snow``;
+      case "nevada ligera":
+      case "小雪":
+      case "neige légère":
+      case "neve leggera":
+      case "небольшой снег":
+        return snow;
       case "mist":
+      case "niebla":
+      case "雾":
+      case "brouillard":
+      case "nebbia":
+      case "туман":
+        return fog;
       case "fog":
         return fog;
       case "tornado":
