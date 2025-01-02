@@ -8,7 +8,7 @@ export default {
         urbanist: ["Urbanist", "system-ui", "sans-serif"],
       },
       colors: {
-        primary: "#226ba3",
+        primary: "#116aa2",
         purewhite: "hsla(0, 0%, 100%, 1)",
         white: "hsla(0, 0%, 90%, 1)",
         lightGrey: "hsla(0, 0%, 70%, 1)",
