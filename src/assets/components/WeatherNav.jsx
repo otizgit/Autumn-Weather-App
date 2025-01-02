@@ -38,6 +38,11 @@ export default function WeatherNav({
     }
   }
 
+  const searchLocationData = (e) => {
+    e.preventDefault();
+    fetchWeatherData();
+  };
+
   const flags = [
     {
       lang: "English",
@@ -93,16 +98,17 @@ export default function WeatherNav({
           className="absolute top-1/2 -translate-y-1/2 left-[0.75rem] text-[1.1rem]"
           icon="iconamoon:search-light"
         />
-        <input
-          value={location}
-          onChange={(e) => {
-            setLocation(e.target.value);
-            console.log(e.target.value);
-          }}
-          className="glass pl-[2.6rem] pr-7 paddingY w-full custom-fz outline-none text-white placeholder:text-white"
-          type="text"
-          placeholder="Search for location"
-        />
+        <form onSubmit={(e) => searchLocationData(e)}>
+          <input
+            value={location}
+            onChange={(e) => {
+              setLocation(e.target.value);
+            }}
+            className="glass pl-[2.6rem] pr-7 paddingY w-full custom-fz outline-none text-white placeholder:text-white"
+            type="text"
+            placeholder="Search for location"
+          />
+        </form>
       </div>
       <div className="flex items-center gap-6">
         <div className="relative">
@@ -110,8 +116,9 @@ export default function WeatherNav({
             onClick={toggleLangDisplay}
             className="flex items-center glass rounded-full gap-2 px-2 paddingY border-style"
           >
-            {defaultFlag.map((flag) => (
+            {defaultFlag.map((flag, index) => (
               <img
+                key={index}
                 className="w-[1.1rem]"
                 src={flag.flag}
                 alt={`${flag.lang} flag`}

@@ -11,7 +11,7 @@ export default {
         primary: "#226ba3",
         purewhite: "hsla(0, 0%, 100%, 1)",
         white: "hsla(0, 0%, 90%, 1)",
-        darkGrey: "hsla(0, 0%, 0%, 1)",
+        lightGrey: "hsla(0, 0%, 70%, 1)",
       },
     },
   },

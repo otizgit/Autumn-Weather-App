@@ -31,6 +31,7 @@ export default function App() {
 
   useEffect(() => {
     fetchWeatherData();
+    console.log(weather);
   }, [unit, language]);
 
   const changeLanguage = (lang) => {
