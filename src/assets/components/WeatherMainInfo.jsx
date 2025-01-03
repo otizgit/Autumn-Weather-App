@@ -196,7 +196,7 @@ export default function WeatherMainInfo({ weather }) {
       <div className="flex items-center justify-between custom-fz mb-6">
         <div className="flex flex-col items-center">
           <img className="w-[2.1rem] mb-2" src={humidity} alt="humidity icon" />
-          <p className="font-semibold">{weather.main.humidity}%</p>
+          <p className="font-semibold">{weather.main.humidity}hPa</p>
           <p className="text-[0.75rem] text-lightGrey">pressure</p>
         </div>
         <div className="flex flex-col items-center">
@@ -219,7 +219,7 @@ export default function WeatherMainInfo({ weather }) {
         <div className="flex flex-col items-center">
           <img className="w-[2.1rem] mb-2" src={wind} alt="wind icon" />
           <p className="font-semibold">{weather.wind.speed}m/s</p>
-          <p className="text-[0.75rem] text-lightGrey">wind speed</p>
+          <p className="text-[0.75rem] text-lightGrey">wind</p>
         </div>
         <div className="flex flex-col items-center">
           <img
@@ -233,57 +233,49 @@ export default function WeatherMainInfo({ weather }) {
         <div className="flex flex-col items-center">
           <img
             className="w-[2.1rem] mb-2"
-            src={precipitation}
-            alt="precipitation icon"
-          />
-          {weather.rain || weather.snow ? (
-            <>
-              {weather.rain && (
-                <p className="font-semibold">Rain: {weather.rain["1h"]} mm</p>
-              )}
-              {weather.snow && (
-                <p className="font-semibold">Snow: {weather.snow["1h"]} mm</p>
-              )}
-            </>
-          ) : (
-            <p className="font-semibold">N/A</p>
-          )}
-          <p className="text-[0.75rem] text-lightGrey">precipitation</p>
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between custom-fz">
-        <div className="flex flex-col items-center">
-          <img
-            className="w-[2.1rem] mb-2"
             src={seaLevel}
             alt="sea-level icon"
           />
           <p className="font-semibold">{weather.main.sea_level / 10}kPa</p>
           <p className="text-[0.75rem] text-lightGrey">sea level</p>
         </div>
+      </div>
+
+      <div className="flex items-center justify-between custom-fz">
         {countryName === "Nigeria" && (
-          <>
-            <div className="flex flex-col items-center">
-              <img
-                className="w-[2.1rem] mb-2"
-                src={sunRise}
-                alt="pressure icon"
-              />
-              <p className="font-semibold">{sunriseTime}</p>
-              <p className="text-[0.75rem] text-lightGrey">sun rise</p>
-            </div>
-          </>
+          <div className="flex flex-col items-center">
+            <img
+              className="w-[2.1rem] mb-2"
+              src={sunRise}
+              alt="pressure icon"
+            />
+            <p className="font-semibold">{sunriseTime}</p>
+            <p className="text-[0.75rem] text-lightGrey">sun rise</p>
+          </div>
         )}
         {countryName === "Nigeria" && (
-          <>
-            <div className="flex flex-col items-center">
-              <img className="w-[2.1rem] mb-2" src={sunSet} alt="cloud icon" />
-              <p className="font-semibold">{sunsetTime}</p>
-              <p className="text-[0.75rem] text-lightGrey">sun set</p>
-            </div>
-          </>
+          <div className="flex flex-col items-center">
+            <img className="w-[2.1rem] mb-2" src={sunSet} alt="cloud icon" />
+            <p className="font-semibold">{sunsetTime}</p>
+            <p className="text-[0.75rem] text-lightGrey">sun set</p>
+          </div>
         )}
+        {weather.rain || weather.snow ? (
+          <div className="flex flex-col items-center">
+            <img
+              className="w-[2.1rem] mb-2"
+              src={precipitation}
+              alt="precipitation icon"
+            />
+            {weather.rain && (
+              <p className="font-semibold">Rain: {weather.rain["1h"]} mm</p>
+            )}
+            {weather.snow && (
+              <p className="font-semibold">Snow: {weather.snow["1h"]} mm</p>
+            )}
+            <p className="text-[0.75rem] text-lightGrey">precipitation</p>
+          </div>
+        ) : null}
       </div>
     </div>
   );
