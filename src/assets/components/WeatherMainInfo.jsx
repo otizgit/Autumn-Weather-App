@@ -14,6 +14,7 @@ import precipitation from "../img/precipitation.png";
 import sunRise from "../img/sunrise.png";
 import sunSet from "../img/sun-set.png";
 import seaLevel from "../img/sea-level.png";
+import groundLevel from "../img/ground-level.png";
 import wind from "../img/windy.png";
 import visibility from "../img/visibility.png";
 import { Icon } from "@iconify/react/dist/iconify.cjs";
@@ -173,9 +174,9 @@ export default function WeatherMainInfo({ weather }) {
           alt=""
         />
         <div>
-          <h1 className="text-[3rem] font-medium">
+          <h1 className="text-[2.5rem] font-medium">
             {weather.main.temp}
-            <sup className=" text-[2rem]">°</sup>
+            <sup className=" text-[1.6rem]">°</sup>
           </h1>
           <p className="-translate-y-2 text-[0.85rem] custom-fz">
             {titledCaseDescription}
@@ -219,7 +220,9 @@ export default function WeatherMainInfo({ weather }) {
         <div className="flex flex-col items-center">
           <img className="w-[2.1rem] mb-2" src={wind} alt="wind icon" />
           <p className="font-semibold">{weather.wind.speed}m/s</p>
-          <p className="text-[0.75rem] text-lightGrey">wind</p>
+          <p className="text-[0.75rem] text-lightGrey">
+            wind <br /> speed
+          </p>
         </div>
         <div className="flex flex-col items-center">
           <img
@@ -242,6 +245,17 @@ export default function WeatherMainInfo({ weather }) {
       </div>
 
       <div className="flex items-center justify-between custom-fz">
+        <div className="flex flex-col items-center">
+          <img
+            className="w-[2.1rem] mb-2"
+            src={groundLevel}
+            alt="ground level icon"
+          />
+          <p className="font-semibold">{weather.main.sea_level / 10}kPa</p>
+          <p className="text-[0.75rem] text-lightGrey">
+            ground <br /> level
+          </p>
+        </div>
         {countryName === "Nigeria" && (
           <div className="flex flex-col items-center">
             <img
@@ -260,7 +274,7 @@ export default function WeatherMainInfo({ weather }) {
             <p className="text-[0.75rem] text-lightGrey">sun set</p>
           </div>
         )}
-        {weather.rain || weather.snow ? (
+        {/* {weather.rain || weather.snow ? (
           <div className="flex flex-col items-center">
             <img
               className="w-[2.1rem] mb-2"
@@ -275,7 +289,7 @@ export default function WeatherMainInfo({ weather }) {
             )}
             <p className="text-[0.75rem] text-lightGrey">precipitation</p>
           </div>
-        ) : null}
+        ) : null} */}
       </div>
     </div>
   );
