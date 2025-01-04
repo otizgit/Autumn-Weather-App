@@ -102,7 +102,7 @@ export default function WeatherNav({
           <input
             value={location}
             onChange={(e) => {
-              setLocation(e.target.value);
+              setLocation(e.target.value.trim());
             }}
             className="glass pl-[2.6rem] pr-7 paddingY w-full custom-fz outline-none text-white placeholder:text-white"
             type="text"
