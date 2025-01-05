@@ -28,10 +28,6 @@
   );
   -webkit-backdrop-filter: blur(15px);
 }
-.grid-style {
-  display: grid;
-  grid-template-columns: auto auto;
-}
 
 @layer components {
   .max-width {
@@ -50,6 +46,6 @@
     @apply border-[0.1em] border-[#9a9a9a6d];
   }
   .paddingY {
-    @apply py-[0.35rem]
+    @apply py-[0.35rem];
   }
 }

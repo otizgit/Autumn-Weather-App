@@ -150,7 +150,7 @@ export default function WeatherMainInfo({ weather }) {
   const sunriseTime = sunriseDate.toLocaleTimeString("en-US", secondOptions);
   const sunsetTime = sunsetDate.toLocaleTimeString("en-US", secondOptions);
   return (
-    <div className="relative w-fit z-20 backdrop-blur-sm shadow-lg glass border-style p-5 rounded-xl">
+    <div className="relative w-[500px] z-20 backdrop-blur-sm shadow-lg glass border-style p-5 rounded-xl">
       <div>
         <div className="flex items-center gap-1 mb-1">
           <Icon
@@ -167,20 +167,22 @@ export default function WeatherMainInfo({ weather }) {
         </div>
       </div>
 
-      <div className="flex items-center gap-4 mb-4">
-        <img
-          className="w-[70px]"
-          src={getWeatherIcon(weather.weather[0].description)}
-          alt=""
-        />
-        <div>
-          <h1 className="text-[2.5rem] font-medium">
-            {weather.main.temp}
-            <sup className=" text-[1.6rem]">°</sup>
-          </h1>
-          <p className="-translate-y-2 text-[0.85rem] custom-fz">
-            {titledCaseDescription}
-          </p>
+      <div className="flex items-center gap-4 justify-between mb-4">
+        <div className="flex items-center gap-4">
+          <img
+            className="w-[70px]"
+            src={getWeatherIcon(weather.weather[0].description)}
+            alt=""
+          />
+          <div>
+            <h1 className="text-[2.5rem] font-medium">
+              {weather.main.temp}
+              <sup className=" text-[1.6rem]">°</sup>
+            </h1>
+            <p className="-translate-y-2 text-[0.85rem] custom-fz">
+              {titledCaseDescription}
+            </p>
+          </div>
         </div>
         <div className="text-white">
           <div className="bg-primary mb-2 px-3 text-[0.8rem] py-1 flex items-center justify-center gap-3 rounded-full">
