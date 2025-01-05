@@ -38,11 +38,6 @@ export default function WeatherNav({
     }
   }
 
-  const searchLocationData = (e) => {
-    e.preventDefault();
-    fetchWeatherData();
-  };
-
   const flags = [
     {
       lang: "English",
@@ -85,6 +80,11 @@ export default function WeatherNav({
   };
   const setToMetric = () => {
     setUnit("metric");
+  };
+
+  const searchLocationData = (e) => {
+    e.preventDefault();
+    fetchWeatherData();
   };
 
   const toggleLangDisplay = () => {

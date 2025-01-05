@@ -2,6 +2,7 @@ import React from "react";
 import WeatherNav from "./WeatherNav";
 import WeatherMainInfo from "./WeatherMainInfo";
 import LocationMap from "./LocationMap";
+import ForecastWrapper from "./ForecastWrapper";
 
 export default function WeatherWrapper({
   weather,
@@ -26,7 +27,7 @@ export default function WeatherWrapper({
         />
         <div className="flex gap-4">
           <WeatherMainInfo weather={weather} />
-          <div>
+          <div className="flex-1">
             <div className="glass border-style rounded-lg overflow-hidden mb-4">
               <iframe
                 width="100%"
@@ -38,11 +39,7 @@ export default function WeatherWrapper({
                 title="google map"
               ></iframe>
             </div>
-            <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea iusto
-              voluptates porro eaque quasi! Voluptatibus dolor deserunt
-              accusantium illum ipsum.
-            </div>
+            <ForecastWrapper unit={unit} lat={lat} lon={lon} />
           </div>
         </div>
         {/* <LocationMap latitude={lat} longitude={lon} /> */}

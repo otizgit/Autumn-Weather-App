@@ -10,7 +10,7 @@ export default function App() {
 
   async function fetchWeatherData() {
     try {
-      const response = await axios.get(
+      const weatherApi = await axios.get(
         "https://api.openweathermap.org/data/2.5/weather",
         {
           params: {
@@ -23,7 +23,7 @@ export default function App() {
           },
         }
       );
-      setWeather(response.data);
+      setWeather(weatherApi.data);
     } catch (error) {
       console.error("Error fetching weather data:", error);
     }
