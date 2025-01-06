@@ -6,9 +6,12 @@ import ForecastWrapper from "./ForecastWrapper";
 
 export default function WeatherWrapper({
   weather,
-  setWeather,
   unit,
   setUnit,
+  forecast,
+  setTrigger,
+  city,
+  setCity,
 }) {
   const { lat, lon } = weather.coord;
   const zoom = 15;
@@ -17,9 +20,11 @@ export default function WeatherWrapper({
     <div className="container min-h-screen max-w-[100vw] relative py-[3rem]">
       <div className="max-width">
         <WeatherNav
-          setWeather={setWeather}
           unit={unit}
           setUnit={setUnit}
+          setTrigger={setTrigger}
+          city={city}
+          setCity={setCity}
         />
         <div className="flex gap-4">
           <WeatherMainInfo weather={weather} />
@@ -35,7 +40,7 @@ export default function WeatherWrapper({
                 title="google map"
               ></iframe>
             </div>
-            <ForecastWrapper unit={unit} lat={lat} lon={lon} />
+            <ForecastWrapper forecast={forecast} />
           </div>
         </div>
         {/* <LocationMap latitude={lat} longitude={lon} /> */}

@@ -1,35 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Icon } from "@iconify/react/dist/iconify.cjs";
-import axios from "axios";
 
-export default function WeatherNav({
-  setWeather,
-  unit,
-  setUnit,
-}) {
-  const [location, setLocation] = useState("");
-
-  async function fetchWeatherData() {
-    try {
-      const response = await axios.get(
-        "https://api.openweathermap.org/data/2.5/weather",
-        {
-          params: {
-            // lat: 40.7128,
-            // lon: -74.006,
-            q: location,
-            appid: "644e8f48a2d7e612cd94f5dc157eb72c",
-            units: unit,
-            lang: language,
-          },
-        }
-      );
-      setWeather(response.data);
-    } catch (error) {
-      console.error("Error fetching weather data:", error);
-    }
-  }
-
+export default function WeatherNav({ unit, setUnit, setTrigger, city, setCity }) {
   const setToStandard = () => {
     setUnit("standard");
   };
@@ -39,7 +11,7 @@ export default function WeatherNav({
 
   const searchLocationData = (e) => {
     e.preventDefault();
-    fetchWeatherData();
+    setTrigger((prevTrigger) => !prevTrigger);
   };
 
   return (
@@ -51,9 +23,9 @@ export default function WeatherNav({
         />
         <form onSubmit={(e) => searchLocationData(e)}>
           <input
-            value={location}
+            value={city}
             onChange={(e) => {
-              setLocation(e.target.value.trim());
+              setCity(e.target.value.trim());
             }}
             className="glass pl-[2.6rem] pr-7 paddingY w-full custom-fz outline-none text-white placeholder:text-white"
             type="text"

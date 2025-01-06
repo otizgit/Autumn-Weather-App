@@ -6,44 +6,45 @@ import WeatherWrapper from "./assets/components/WeatherWrapper";
 export default function App() {
   const [unit, setUnit] = useState("metric");
   const [weather, setWeather] = useState(null);
-
-  async function fetchWeatherData() {
-    try {
-      const weatherApi = await axios.get(
-        "https://api.openweathermap.org/data/2.5/weather",
-        {
-          params: {
-            // lat: 40.7128,
-            // lon: -74.006,
-            q: "Jos",
-            appid: "644e8f48a2d7e612cd94f5dc157eb72c",
-            units: unit,
-            lang: language,
-          },
-        }
-      );
-      setWeather(weatherApi.data);
-    } catch (error) {
-      console.error("Error fetching weather data:", error);
-    }
-  }
+  const [forecast, setForecast] = useState(null);
+  const [city, setCity] = useState("Lagos");
+  const [trigger, setTrigger] = useState(false);
 
   useEffect(() => {
-    fetchWeatherData();
-  }, [unit]);
+    const fetchWeatherAndForecast = async () => {
+      const apiKey = "644e8f48a2d7e612cd94f5dc157eb72c";
 
-  const changeLanguage = (lang) => {
-    setLanguage(lang);
-  };
+      const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
+      const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${unit}&appid=${apiKey}`;
+
+      try {
+        const [currentWeatherResponse, forecastResponse] = await Promise.all([
+          axios.get(currentWeatherUrl),
+          axios.get(forecastUrl),
+        ]);
+
+        setWeather(currentWeatherResponse.data);
+        setForecast(forecastResponse.data.list.slice(1, 11));
+      } catch (err) {
+        setError("Error fetching data. Please try again.");
+        console.error(err);
+      }
+    };
+
+    fetchWeatherAndForecast();
+  }, [unit, trigger]);
 
   return (
     <div>
       {weather ? (
         <WeatherWrapper
           weather={weather}
-          setWeather={setWeather}
           unit={unit}
           setUnit={setUnit}
+          forecast={forecast}
+          setTrigger={setTrigger}
+          city={city}
+          setCity={setCity}
         />
       ) : (
         <LoadingScreen />
