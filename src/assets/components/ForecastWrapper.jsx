@@ -7,7 +7,7 @@ export default function ForecastWrapper({ unit, lon, lat }) {
   async function fetchForecastData() {
     try {
       const forecastApi = await axios.get(
-        `api.openweathermap.org/data/2.5/forecast?lat=4${lat}&lon=${lon}&appid=644e8f48a2d7e612cd94f5dc157eb72c`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=4${lat}&lon=${lon}&units=metric&appid=644e8f48a2d7e612cd94f5dc157eb72c`
       );
       setForecast(forecastApi.data);
     } catch (error) {
@@ -17,9 +17,9 @@ export default function ForecastWrapper({ unit, lon, lat }) {
 
   useEffect(() => {
     fetchForecastData();
+    // console.log("Hello")
     console.log(forecast);
-    console.log("Hello")
-}, [unit]);
+  }, [unit]);
 
   return (
     <div className="w-full">
