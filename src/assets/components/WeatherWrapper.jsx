@@ -32,7 +32,7 @@ export default function WeatherWrapper({
             <div className="glass border-style rounded-xl overflow-hidden mb-4">
               <iframe
                 width="100%"
-                height="250"
+                height="300"
                 style={{ border: "none" }}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

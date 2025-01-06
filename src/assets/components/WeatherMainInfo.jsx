@@ -90,148 +90,129 @@ export default function WeatherMainInfo({ weather }) {
   const sunriseTime = sunriseDate.toLocaleTimeString("en-US", secondOptions);
   const sunsetTime = sunsetDate.toLocaleTimeString("en-US", secondOptions);
   return (
-    <div className="relative w-[350px] z-20 backdrop-blur-sm shadow-lg glass border-style p-5 rounded-xl">
-      <div>
-        <div className="flex items-center gap-1 mb-1">
-          <Icon
-            className="text-white text-[1.1rem]"
-            icon="gridicons:location"
-          />
-          <div>
-            <h1 className="font-medium custom-fz">{`${weather.name}, ${countryName}`}</h1>
+    <div className="relative w-[350px] z-20 backdrop-blur-sm">
+      <div className="shadow-lg glass border-style rounded-xl p-5 mb-4">
+        <div>
+          <div className="flex items-center gap-1 mb-1">
+            <Icon
+              className="text-white text-[1.1rem]"
+              icon="gridicons:location"
+            />
+            <div>
+              <h1 className="font-medium custom-fz">{`${weather.name}, ${countryName}`}</h1>
+            </div>
+          </div>
+          <div className="flex items-center gap-1 smaller-fz">
+            <p className="text-lightGrey">{formattedDate}</p>
+            <p className="text-lightGrey">{formattedTime}</p>
           </div>
         </div>
-        <div className="flex items-center gap-1 smaller-fz">
-          <p className="text-lightGrey">{formattedDate}</p>
-          <p className="text-lightGrey">{formattedTime}</p>
+
+        <div className="flex items-center gap-4 justify-between">
+          <div className="flex items-center gap-4">
+            <img
+              className="w-[70px]"
+              src={getWeatherIcon(weather.weather[0].description)}
+              alt=""
+            />
+            <div>
+              <h1 className="text-[2.5rem] font-medium">
+                {weather.main.temp}
+                <sup className=" text-[1.6rem]">°</sup>
+              </h1>
+              <p className="-translate-y-2 text-[0.85rem] custom-fz">
+                {titledCaseDescription}
+              </p>
+            </div>
+          </div>
+          <div className="text-white">
+            <div className="bg-primary mb-2 px-3 text-[0.8rem] py-1 flex items-center justify-center gap-3 rounded-full">
+              <p className="text-white">H</p>
+              <p className="text-white">{weather.main.temp_max}°</p>
+            </div>
+            <div className="bg-primary px-3 text-[0.8rem] flex py-1 items-center justify-center gap-3 rounded-full">
+              <p className="text-white">L</p>
+              <p className="text-white">{weather.main.temp_min}°</p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="flex items-center gap-4 justify-between mb-4">
-        <div className="flex items-center gap-4">
-          <img
-            className="w-[70px]"
-            src={getWeatherIcon(weather.weather[0].description)}
-            alt=""
-          />
-          <div>
-            <h1 className="text-[2.5rem] font-medium">
-              {weather.main.temp}
-              <sup className=" text-[1.6rem]">°</sup>
-            </h1>
-            <p className="-translate-y-2 text-[0.85rem] custom-fz">
-              {titledCaseDescription}
-            </p>
-          </div>
-        </div>
-        <div className="text-white">
-          <div className="bg-primary mb-2 px-3 text-[0.8rem] py-1 flex items-center justify-center gap-3 rounded-full">
-            <p className="text-white">H</p>
-            <p className="text-white">{weather.main.temp_max}°</p>
-          </div>
-          <div className="bg-primary px-3 text-[0.8rem] flex py-1 items-center justify-center gap-3 rounded-full">
-            <p className="text-white">L</p>
-            <p className="text-white">{weather.main.temp_min}°</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between custom-fz mb-6">
-        <div className="flex flex-col items-center">
-          <img className="w-[2.1rem] mb-2" src={humidity} alt="humidity icon" />
-          <p className="font-semibold">{weather.main.humidity}hPa</p>
-          <p className="text-[0.75rem] text-lightGrey">pressure</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <img
-            className="w-[2.1rem] mb-2"
-            src={pressureGuage}
-            alt="pressure icon"
-          />
-          <p className="font-semibold">{weather.main.humidity}%</p>
-          <p className="text-[0.75rem] text-lightGrey">humidity</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <img className="w-[2.1rem] mb-2" src={cloud} alt="cloud icon" />
-          <p className="font-semibold">{weather.clouds.all}%</p>
-          <p className="text-[0.75rem] text-lightGrey">cloudiness</p>
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between custom-fz mb-6">
-        <div className="flex flex-col items-center">
-          <img className="w-[2.1rem] mb-2" src={wind} alt="wind icon" />
-          <p className="font-semibold">{weather.wind.speed}m/s</p>
-          <p className="text-[0.75rem] text-lightGrey">
-            wind <br /> speed
-          </p>
-        </div>
-        <div className="flex flex-col items-center">
-          <img
-            className="w-[2.1rem] mb-2"
-            src={visibility}
-            alt="visibility icon"
-          />
-          <p className="font-semibold">{weather.visibility / 1000}km</p>
-          <p className="text-[0.75rem] text-lightGrey">visibility</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <img
-            className="w-[2.1rem] mb-2"
-            src={seaLevel}
-            alt="sea-level icon"
-          />
-          <p className="font-semibold">{weather.main.sea_level / 10}kPa</p>
-          <p className="text-[0.75rem] text-lightGrey">sea level</p>
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between custom-fz">
-        <div className="flex flex-col items-center">
-          <img
-            className="w-[2.1rem] mb-2"
-            src={groundLevel}
-            alt="ground level icon"
-          />
-          <p className="font-semibold">{weather.main.sea_level / 10}kPa</p>
-          <p className="text-[0.75rem] text-lightGrey">
-            ground <br /> level
-          </p>
-        </div>
-        {countryName === "Nigeria" && (
+      <div className="shadow-lg glass border-style rounded-xl p-5 mb-4">
+        <div className="flex items-center justify-between custom-fz mb-6">
           <div className="flex flex-col items-center">
             <img
               className="w-[2.1rem] mb-2"
-              src={sunRise}
+              src={humidity}
+              alt="humidity icon"
+            />
+            <p className="font-semibold">{weather.main.humidity}hPa</p>
+            <p className="text-[0.75rem] text-lightGrey">pressure</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <img
+              className="w-[2.1rem] mb-2"
+              src={pressureGuage}
               alt="pressure icon"
             />
-            <p className="font-semibold">{sunriseTime}</p>
-            <p className="text-[0.75rem] text-lightGrey">sun rise</p>
+            <p className="font-semibold">{weather.main.humidity}%</p>
+            <p className="text-[0.75rem] text-lightGrey">humidity</p>
           </div>
-        )}
-        {countryName === "Nigeria" && (
           <div className="flex flex-col items-center">
-            <img className="w-[2.1rem] mb-2" src={sunSet} alt="cloud icon" />
-            <p className="font-semibold">{sunsetTime}</p>
-            <p className="text-[0.75rem] text-lightGrey">sun set</p>
+            <img className="w-[2.1rem] mb-2" src={cloud} alt="cloud icon" />
+            <p className="font-semibold">{weather.clouds.all}%</p>
+            <p className="text-[0.75rem] text-lightGrey">cloudiness</p>
           </div>
-        )}
-        {/* {weather.rain || weather.snow ? (
+        </div>
+
+        <div className="flex items-center justify-between custom-fz">
+          <div className="flex flex-col items-center">
+            <img className="w-[2.1rem] mb-2" src={wind} alt="wind icon" />
+            <p className="font-semibold">{weather.wind.speed}m/s</p>
+            <p className="text-[0.75rem] text-lightGrey">
+              wind <br /> speed
+            </p>
+          </div>
           <div className="flex flex-col items-center">
             <img
               className="w-[2.1rem] mb-2"
-              src={precipitation}
-              alt="precipitation icon"
+              src={visibility}
+              alt="visibility icon"
             />
-            {weather.rain && (
-              <p className="font-semibold">Rain: {weather.rain["1h"]} mm</p>
-            )}
-            {weather.snow && (
-              <p className="font-semibold">Snow: {weather.snow["1h"]} mm</p>
-            )}
-            <p className="text-[0.75rem] text-lightGrey">precipitation</p>
+            <p className="font-semibold">{weather.visibility / 1000}km</p>
+            <p className="text-[0.75rem] text-lightGrey">visibility</p>
           </div>
-        ) : null} */}
+          <div className="flex flex-col items-center">
+            <img
+              className="w-[2.1rem] mb-2"
+              src={seaLevel}
+              alt="sea-level icon"
+            />
+            <p className="font-semibold">{weather.main.sea_level / 10}kPa</p>
+            <p className="text-[0.75rem] text-lightGrey">sea level</p>
+          </div>
+        </div>
+
+        {/* <div className="flex items-center custom-fz">
+          {countryName === "Nigeria" && (
+            <div className="flex flex-col items-center">
+              <img
+                className="w-[2.1rem] mb-2"
+                src={sunRise}
+                alt="pressure icon"
+              />
+              <p className="font-semibold">{sunriseTime}</p>
+              <p className="text-[0.75rem] text-lightGrey">sun rise</p>
+            </div>
+          )}
+          {countryName === "Nigeria" && (
+            <div className="flex flex-col items-center">
+              <img className="w-[2.1rem] mb-2" src={sunSet} alt="cloud icon" />
+              <p className="font-semibold">{sunsetTime}</p>
+              <p className="text-[0.75rem] text-lightGrey">sun set</p>
+            </div>
+          )}
+        </div> */}
       </div>
     </div>
   );
