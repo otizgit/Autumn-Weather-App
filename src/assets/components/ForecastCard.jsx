@@ -1,12 +1,24 @@
-import React from 'react'
+import React from "react";
 
-export default function ForecastCard({forecast}) {
-    const slicedForecast = forecast.list.slice(1, 11)
-    console.log(slicedForecast);
+export default function ForecastCard({ forecast }) {
+    let modifiedTimeOfForecast;
+  const timeOfForecast = Number(forecast.dt_txt.slice(11, 13))
 
+  if (timeOfForecast <= 11) {
+    modifiedTimeOfForecast = timeOfForecast.toLocaleString() + 'am'
+    if (timeOfForecast == 0) {
+        modifiedTimeOfForecast = "12am"
+    }
+  } else {
+    modifiedTimeOfForecast = timeOfForecast.toLocaleString() + 'pm'
+  }
+  
   return (
-    <div>
-        Hello      
+    <div className="">
+        <p>{modifiedTimeOfForecast}</p>
+      <p>
+        {forecast.main.temp}°
+      </p>
     </div>
-  )
+  );
 }

@@ -11,7 +11,7 @@ export default function ForecastWrapper({ unit, lon, lat }) {
       const forecastApi = await axios.get(
         `https://api.openweathermap.org/data/2.5/forecast?lat=4${lat}&lon=${lon}&units=metric&appid=644e8f48a2d7e612cd94f5dc157eb72c`
       );
-      setForecast(forecastApi.data);
+      setForecast(forecastApi.data.list.slice(1, 11));
     } catch (error) {
       console.error("Error fetching weather data:", error);
     }
@@ -24,12 +24,16 @@ export default function ForecastWrapper({ unit, lon, lat }) {
   return (
     <div className="border-style glass p-5 rounded-xl custom-fz">
       <h1 className="font-semibold">Hourly Forecast</h1>
-      {forecast ? (
-        <div>
-          <ForecastCard forecast={forecast} />
-        </div>
-      ) : // <LoadingScreen />
-      null}
+      {forecast
+        ? forecast.map((forecastData, index) => {
+            return (
+              <div key={index}>
+                <ForecastCard forecast={forecastData} />
+              </div>
+            );
+          })
+        : // <LoadingScreen />
+          null}
     </div>
   );
 }
