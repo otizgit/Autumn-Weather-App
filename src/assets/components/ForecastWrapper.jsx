@@ -23,17 +23,15 @@ export default function ForecastWrapper({ unit, lon, lat }) {
 
   return (
     <div className="border-style glass p-5 rounded-xl custom-fz">
-      <h1 className="font-semibold">Hourly Forecast</h1>
-      {forecast
-        ? forecast.map((forecastData, index) => {
-            return (
-              <div key={index}>
-                <ForecastCard forecast={forecastData} />
-              </div>
-            );
-          })
-        : // <LoadingScreen />
-          null}
+      {/* <h1 className="font-semibold">Hourly Forecast</h1> */}
+      <div className="flex items-center justify-between">
+        {forecast
+          ? forecast.map((forecastData, index) => {
+              return <ForecastCard key={index} forecast={forecastData} />;
+            })
+          : // <LoadingScreen />
+            null}
+      </div>
     </div>
   );
 }

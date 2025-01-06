@@ -4,7 +4,6 @@ import LoadingScreen from "./assets/components/LoadingScreen";
 import WeatherWrapper from "./assets/components/WeatherWrapper";
 
 export default function App() {
-  const [language, setLanguage] = useState("en");
   const [unit, setUnit] = useState("metric");
   const [weather, setWeather] = useState(null);
 
@@ -31,7 +30,6 @@ export default function App() {
 
   useEffect(() => {
     fetchWeatherData();
-    // console.log(weather);
   }, [unit]);
 
   const changeLanguage = (lang) => {
@@ -46,8 +44,6 @@ export default function App() {
           setWeather={setWeather}
           unit={unit}
           setUnit={setUnit}
-          language={language}
-          changeLanguage={changeLanguage}
         />
       ) : (
         <LoadingScreen />

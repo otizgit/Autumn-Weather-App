@@ -9,8 +9,6 @@ export default function WeatherWrapper({
   setWeather,
   unit,
   setUnit,
-  language,
-  changeLanguage,
 }) {
   const { lat, lon } = weather.coord;
   const zoom = 15;
@@ -22,8 +20,6 @@ export default function WeatherWrapper({
           setWeather={setWeather}
           unit={unit}
           setUnit={setUnit}
-          language={language}
-          changeLanguage={changeLanguage}
         />
         <div className="flex gap-4">
           <WeatherMainInfo weather={weather} />
