@@ -28,7 +28,7 @@ export default function WeatherWrapper({
         <div className="flex gap-4">
           <WeatherMainInfo weather={weather} />
           <div className="flex-1">
-            <div className="glass border-style rounded-lg overflow-hidden mb-4">
+            <div className="glass border-style rounded-xl overflow-hidden mb-4">
               <iframe
                 width="100%"
                 height="250"

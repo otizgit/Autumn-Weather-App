@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import ForecastCard from "./ForecastCard";
+import LoadingScreen from "./LoadingScreen";
 
 export default function ForecastWrapper({ unit, lon, lat }) {
-  const [forecast, setForecast] = useState(null);
+  const [forecast, setForecast] = useState([]);
 
   async function fetchForecastData() {
     try {
@@ -17,14 +19,17 @@ export default function ForecastWrapper({ unit, lon, lat }) {
 
   useEffect(() => {
     fetchForecastData();
-    // console.log("Hello")
-    console.log(forecast);
   }, [unit]);
 
   return (
-    <div className="w-full">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe,
-      obcaecati!
+    <div className="border-style glass p-5 rounded-xl custom-fz">
+      <h1 className="font-semibold">Hourly Forecast</h1>
+      {forecast ? (
+        <div>
+          <ForecastCard forecast={forecast} />
+        </div>
+      ) : // <LoadingScreen />
+      null}
     </div>
   );
 }
