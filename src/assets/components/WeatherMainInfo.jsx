@@ -150,7 +150,7 @@ export default function WeatherMainInfo({ weather }) {
   const sunriseTime = sunriseDate.toLocaleTimeString("en-US", secondOptions);
   const sunsetTime = sunsetDate.toLocaleTimeString("en-US", secondOptions);
   return (
-    <div className="relative w-[500px] z-20 backdrop-blur-sm shadow-lg glass border-style p-5 rounded-xl">
+    <div className="relative w-[350px] z-20 backdrop-blur-sm shadow-lg glass border-style p-5 rounded-xl">
       <div>
         <div className="flex items-center gap-1 mb-1">
           <Icon
