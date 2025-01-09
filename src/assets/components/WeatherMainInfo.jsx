@@ -20,7 +20,7 @@ import visibility from "../img/visibility.png";
 import { Icon } from "@iconify/react/dist/iconify.cjs";
 import React from "react";
 
-export default function WeatherMainInfo({ weather }) {
+export default function WeatherMainInfo({ unit, weather }) {
   function getWeatherIcon(description) {
     switch (description) {
       case "clear sky":
@@ -89,6 +89,15 @@ export default function WeatherMainInfo({ weather }) {
   const secondOptions = { hour: "2-digit", minute: "2-digit" };
   const sunriseTime = sunriseDate.toLocaleTimeString("en-US", secondOptions);
   const sunsetTime = sunsetDate.toLocaleTimeString("en-US", secondOptions);
+
+  function convertTemp(temp) {
+    if (unit == "metric") {
+      return temp;
+    } else {
+      return (Number(temp) * 1.8 + 32).toFixed(2);
+    }
+  }
+
   return (
     <div className="relative w-[350px] z-20 backdrop-blur-sm">
       <div className="shadow-lg glass border-style rounded-xl p-5">
@@ -117,7 +126,7 @@ export default function WeatherMainInfo({ weather }) {
             />
             <div>
               <h1 className="text-[2.7rem] font-bold">
-                {weather.main.temp}
+                {convertTemp(weather.main.temp)}
                 <sup className=" text-[1.6rem]">°</sup>
               </h1>
               <p className="-translate-y-2 text-[0.8rem]">
@@ -128,11 +137,11 @@ export default function WeatherMainInfo({ weather }) {
           <div className="text-white">
             <div className="bg-primary mb-2 px-3 text-[0.8rem] py-1 flex items-center justify-center gap-3 rounded-full">
               <p className="text-white">H</p>
-              <p className="text-white">{weather.main.temp_max}°</p>
+              <p className="text-white font-medium">{convertTemp(weather.main.temp_max)}°</p>
             </div>
             <div className="bg-primary px-3 text-[0.8rem] flex py-1 items-center justify-center gap-3 rounded-full">
               <p className="text-white">L</p>
-              <p className="text-white">{weather.main.temp_min}°</p>
+              <p className="text-white font-medium">{convertTemp(weather.main.temp_min)}°</p>
             </div>
           </div>
         </div>

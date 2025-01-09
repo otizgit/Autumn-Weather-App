@@ -9,7 +9,7 @@ import clearSky from "../img/clear-sky.png";
 import brokenClouds from "../img/broken-clouds.png";
 import randomWeather from "../img/random-weather.png";
 
-export default function ForecastCard({ forecast }) {
+export default function ForecastCard({ unit, forecast }) {
   function getWeatherIcon(description) {
     switch (description) {
       case "clear sky":
@@ -57,6 +57,14 @@ export default function ForecastCard({ forecast }) {
     modifiedTimeOfForecast = timeOfForecast.toLocaleString() + "pm";
   }
 
+  function convertTemp(temp) {
+    if (unit == "metric") {
+      return temp;
+    } else {
+      return (Number(temp) * 1.8 + 32).toFixed(2);
+    }
+  }
+
   return (
     <div className="custom-fz flex flex-col items-center gap-1">
       <p>{modifiedTimeOfForecast}</p>
@@ -65,7 +73,7 @@ export default function ForecastCard({ forecast }) {
         src={getWeatherIcon(forecast.weather[0].description)}
         alt=""
       />
-      <p className="font-semibold">{forecast.main.temp}°</p>
+      <p className="font-semibold">{convertTemp(forecast.main.temp)}°</p>
     </div>
   );
 }

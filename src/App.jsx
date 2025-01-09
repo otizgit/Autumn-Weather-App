@@ -16,9 +16,9 @@ export default function App() {
     const fetchWeatherAndForecast = async () => {
       const apiKey = "644e8f48a2d7e612cd94f5dc157eb72c";
 
-      const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
-      const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${unit}&appid=${apiKey}`;
-      const dailyForecastUrl = `https://api.weatherapi.com/v1/forecast.json?key=506e4d8cdfde415086e105419250901&q=${city}&days=7`;
+      const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+      const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+      const dailyForecastUrl = `https://api.weatherapi.com/v1/forecast.json?key=506e4d8cdfde415086e105419250901&q=${city}&days=8`;
 
       try {
         const [
@@ -33,7 +33,7 @@ export default function App() {
 
         setWeather(currentWeatherResponse.data);
         setForecast(forecastResponse.data.list.slice(1, 11));
-        setDailyForecast(dailyForecastResponse.data.forecast.forecastday);
+        setDailyForecast(dailyForecastResponse.data.forecast.forecastday.slice(1));
       } catch (err) {
         setError("Error fetching data. Please try again.");
         console.error(err);
