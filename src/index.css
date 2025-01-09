@@ -34,6 +34,11 @@
   border-color: hsla(0, 0%, 90%, 1) transparent transparent transparent;
   border-radius: 50%/150px 150px 0 0;
 }
+@media (max-width: 640px) {
+  .curved-line {
+    width: 100%;
+  }
+}
 @keyframes rotate {
   from {
     transform: translateX(-50%) rotate(0deg);

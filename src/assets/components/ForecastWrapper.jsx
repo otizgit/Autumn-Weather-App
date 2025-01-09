@@ -24,21 +24,21 @@ export default function ForecastWrapper({ unit, dailyForecast, forecast }) {
       <div className=" glass border-style flex-1 pt-10 p-5 rounded-xl">
         <div className="flex h-[80px] custom-fz">
           <div>
-            <h1 className="font-bold text-[1.1rem] mb-2">{dailyForecast.forecast.forecastday[0].astro.sunrise}</h1>
+            <h1 className="font-bold custom-fz sm:text-[1.1rem] mb-2">{dailyForecast.forecast.forecastday[0].astro.sunrise}</h1>
             <p className="text-lightGrey">sunrise</p>
           </div>
           <div className="relative flex-1">
             <img
-              className="w-[40px] absolute left-1/2 -translate-x-1/2 -top-5 sun"
+              className="w-[25px] sm:w-[40px] absolute left-1/2 -translate-x-1/2 -top-2 sm:-top-5 sun"
               src={sun}
               alt="image of a rotating sun"
             />
             <div className="curved-line overflow-hidden">
-              <div className="w-[350px] h-[60px] gradient"></div>
+              <div className="hidden sm:block w-[350px] h-[60px] gradient"></div>
             </div>
           </div>
           <div>
-            <h1 className="font-bold text-[1.1rem] mb-2">{dailyForecast.forecast.forecastday[0].astro.sunset}</h1>
+            <h1 className="font-bold custom-fz sm:text-[1.1rem] mb-2">{dailyForecast.forecast.forecastday[0].astro.sunset}</h1>
             <p className="text-lightGrey">sunset</p>
           </div>
         </div>
