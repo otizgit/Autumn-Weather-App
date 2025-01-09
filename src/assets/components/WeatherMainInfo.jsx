@@ -14,7 +14,7 @@ import wind from "../img/windy.png";
 import { Icon } from "@iconify/react/dist/iconify.cjs";
 import React from "react";
 
-export default function WeatherMainInfo({ unit, weather }) {
+export default function WeatherMainInfo({ unit, weather, dailyForecast }) {
   function getWeatherIcon(description) {
     switch (description) {
       case "clear sky":
@@ -49,21 +49,6 @@ export default function WeatherMainInfo({ unit, weather }) {
         return randomWeather;
     }
   }
-  const displayNames = new Intl.DisplayNames(["en"], { type: "region" });
-  const countryName = displayNames.of(weather.sys.country);
-
-  const localTimeInMs = (weather.dt + weather.timezone) * 1000;
-  const localDate = new Date(localTimeInMs);
-  const options = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const formattedDate = localDate.toLocaleDateString("en-US", options);
-  const formattedTime = localDate.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
 
   function convertToTitleDescription(str) {
     return str
@@ -76,14 +61,6 @@ export default function WeatherMainInfo({ unit, weather }) {
     weather.weather[0].description
   );
 
-  const sunriseTimestamp = weather.sys.sunrise;
-  const sunsetTimestamp = weather.sys.sunset;
-  const sunriseDate = new Date(sunriseTimestamp * 1000);
-  const sunsetDate = new Date(sunsetTimestamp * 1000);
-  const secondOptions = { hour: "2-digit", minute: "2-digit" };
-  const sunriseTime = sunriseDate.toLocaleTimeString("en-US", secondOptions);
-  const sunsetTime = sunsetDate.toLocaleTimeString("en-US", secondOptions);
-
   function convertTemp(temp) {
     if (unit == "metric") {
       return temp;
@@ -91,6 +68,36 @@ export default function WeatherMainInfo({ unit, weather }) {
       return (Number(temp) * 1.8 + 32).toFixed(2);
     }
   }
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+    const day = date.getDate();
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+    const weekday = dayNames[date.getDay()];
+
+    return `${day} ${month}, ${weekday} ${year}`;
+  }
+
+  const time = dailyForecast.location.localtime.slice(10)
+  const date = dailyForecast.location.localtime.slice(0, 10)
 
   return (
     <div className="relative lg:w-[360px] z-20 backdrop-blur-sm">
@@ -102,12 +109,12 @@ export default function WeatherMainInfo({ unit, weather }) {
               icon="gridicons:location"
             />
             <div>
-              <h1 className="font-medium custom-fz">{`${weather.name}, ${countryName}`}</h1>
+              <h1 className="font-medium custom-fz">{`${weather.name}, ${dailyForecast.location.country}`}</h1>
             </div>
           </div>
           <div className="flex items-center gap-1 smaller-fz">
-            <p className="text-lightGrey">{formattedDate}</p>
-            <p className="text-lightGrey">{formattedTime}</p>
+            <p className="text-lightGrey">{formatDate(date)}</p>
+            <p className="text-lightGrey">{time}</p>
           </div>
         </div>
 
@@ -120,7 +127,7 @@ export default function WeatherMainInfo({ unit, weather }) {
             />
             <div>
               <h1 className="text-[2.7rem] font-bold">
-                {convertTemp(weather.main.temp)}
+                {unit == "metric" ? dailyForecast.current.temp_c : dailyForecast.current.temp_f}
                 <sup className=" text-[1.6rem]">°</sup>
               </h1>
               <p className="-translate-y-2 text-[0.8rem]">
@@ -128,7 +135,7 @@ export default function WeatherMainInfo({ unit, weather }) {
               </p>
             </div>
           </div>
-          <div className="text-white">
+          {/* <div className="text-white">
             <div className="bg-primary mb-2 px-3 text-[0.8rem] py-1 flex items-center justify-center gap-3 rounded-full">
               <p className="text-white">H</p>
               <p className="text-white font-medium">
@@ -141,7 +148,7 @@ export default function WeatherMainInfo({ unit, weather }) {
                 {convertTemp(weather.main.temp_min)}°
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="flex items-center justify-between custom-fz">

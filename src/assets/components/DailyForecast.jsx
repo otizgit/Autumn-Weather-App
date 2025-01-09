@@ -33,9 +33,9 @@ export default function DailyForecast({ unit, dailyForecast }) {
     <div className="lg:w-[360px] shadow-lg glass border-style rounded-xl p-5">
       <h1 className="font-semibold mb-4 custom-fz">Daily Forecast</h1>
       <div className="flex flex-col gap-2">
-        {dailyForecast.map((forecast) => {
+        {dailyForecast.map((forecast, index) => {
           return (
-            <div className="custom-fz flex items-center justify-between">
+            <div key={index} className="custom-fz flex items-center justify-between">
               <div className="flex items-center gap-2 relative group">
                 <img
                   className="w-[30px]"

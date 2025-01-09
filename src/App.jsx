@@ -33,7 +33,7 @@ export default function App() {
 
         setWeather(currentWeatherResponse.data);
         setForecast(forecastResponse.data.list.slice(1, 11));
-        setDailyForecast(dailyForecastResponse.data.forecast.forecastday.slice(1));
+        setDailyForecast(dailyForecastResponse.data);
       } catch (err) {
         setError("Error fetching data. Please try again.");
         console.error(err);

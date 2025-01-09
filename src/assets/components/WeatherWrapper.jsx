@@ -28,7 +28,7 @@ export default function WeatherWrapper({
           setCity={setCity}
         />
         <div className="flex flex-col lg:flex-row gap-4">
-          <WeatherMainInfo unit={unit} weather={weather} />
+          <WeatherMainInfo unit={unit} weather={weather} dailyForecast={dailyForecast} />
           <div className="flex-1">
             <div className="glass h-[300px] lg:h-full border-style rounded-xl overflow-hidden mb-4">
               <iframe
@@ -46,7 +46,7 @@ export default function WeatherWrapper({
       </div>
 
       <div className="flex flex-col lg:flex-row gap-4">
-        <DailyForecast unit={unit} dailyForecast={dailyForecast} />
+        <DailyForecast unit={unit} dailyForecast={dailyForecast.forecast.forecastday.slice(1)} />
         <ForecastWrapper unit={unit} forecast={forecast} />
       </div>
     </div>
