@@ -99,7 +99,7 @@ export default function WeatherMainInfo({ unit, weather }) {
   }
 
   return (
-    <div className="relative w-[360px] z-20 backdrop-blur-sm">
+    <div className="relative lg:w-[360px] z-20 backdrop-blur-sm">
       <div className="shadow-lg glass border-style rounded-xl p-5">
         <div className="mb-6">
           <div className="flex items-center gap-1 mb-1">

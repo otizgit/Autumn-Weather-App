@@ -2,7 +2,7 @@ import React from "react";
 
 export default function DailyForecast({ unit, dailyForecast }) {
   return (
-    <div className="w-[360px] shadow-lg glass border-style rounded-xl p-5">
+    <div className="lg:w-[360px] shadow-lg glass border-style rounded-xl p-5">
       <h1 className="font-semibold mb-4 custom-fz">Daily Forecast</h1>
       <div className="flex flex-col gap-2">
         {dailyForecast.map((forecast) => {

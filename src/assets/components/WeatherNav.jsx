@@ -15,7 +15,7 @@ export default function WeatherNav({ unit, setUnit, setTrigger, city, setCity })
   };
 
   return (
-    <div className="mb-6 flex items-center justify-between">
+    <div className="mb-6 flex items-center gap-4 justify-between">
       <div className="relative rounded-full overflow-hidden border-style w-[300px]">
         <Icon
           className="absolute top-1/2 -translate-y-1/2 left-[0.75rem] text-[1.1rem]"
