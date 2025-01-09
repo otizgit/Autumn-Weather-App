@@ -3,12 +3,14 @@ import WeatherNav from "./WeatherNav";
 import WeatherMainInfo from "./WeatherMainInfo";
 import LocationMap from "./LocationMap";
 import ForecastWrapper from "./ForecastWrapper";
+import DailyForecast from "./DailyForecast";
 
 export default function WeatherWrapper({
   weather,
   unit,
   setUnit,
   forecast,
+  dailyForecast,
   setTrigger,
   city,
   setCity,
@@ -46,7 +48,7 @@ export default function WeatherWrapper({
       </div>
 
       <div className="flex gap-4">
-        <div></div>
+        <DailyForecast dailyForecast={dailyForecast} />
         <ForecastWrapper forecast={forecast} />
       </div>
     </div>

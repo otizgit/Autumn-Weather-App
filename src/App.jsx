@@ -7,6 +7,8 @@ export default function App() {
   const [unit, setUnit] = useState("metric");
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
+  const [dailyForecast, setDailyForecast] = useState(null);
+
   const [city, setCity] = useState("Lagos");
   const [trigger, setTrigger] = useState(false);
 
@@ -16,15 +18,22 @@ export default function App() {
 
       const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
       const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${unit}&appid=${apiKey}`;
+      const dailyForecastUrl = `https://api.weatherapi.com/v1/forecast.json?key=506e4d8cdfde415086e105419250901&q=${city}&days=7`;
 
       try {
-        const [currentWeatherResponse, forecastResponse] = await Promise.all([
+        const [
+          currentWeatherResponse,
+          forecastResponse,
+          dailyForecastResponse,
+        ] = await Promise.all([
           axios.get(currentWeatherUrl),
           axios.get(forecastUrl),
+          axios.get(dailyForecastUrl),
         ]);
 
         setWeather(currentWeatherResponse.data);
         setForecast(forecastResponse.data.list.slice(1, 11));
+        setDailyForecast(dailyForecastResponse.data.forecast.forecastday);
       } catch (err) {
         setError("Error fetching data. Please try again.");
         console.error(err);
@@ -42,6 +51,7 @@ export default function App() {
           unit={unit}
           setUnit={setUnit}
           forecast={forecast}
+          dailyForecast={dailyForecast}
           setTrigger={setTrigger}
           city={city}
           setCity={setCity}
