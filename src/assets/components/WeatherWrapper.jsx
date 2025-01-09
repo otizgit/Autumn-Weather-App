@@ -47,7 +47,7 @@ export default function WeatherWrapper({
 
       <div className="flex flex-col lg:flex-row gap-4">
         <DailyForecast unit={unit} dailyForecast={dailyForecast.forecast.forecastday.slice(1)} />
-        <ForecastWrapper unit={unit} forecast={forecast} />
+        <ForecastWrapper unit={unit} dailyForecast={dailyForecast} forecast={forecast} />
       </div>
     </div>
   );

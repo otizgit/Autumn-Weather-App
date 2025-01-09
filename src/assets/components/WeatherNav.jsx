@@ -25,7 +25,7 @@ export default function WeatherNav({ unit, setUnit, setTrigger, city, setCity })
           <input
             value={city}
             onChange={(e) => {
-              setCity(e.target.value.trim());
+              setCity(e.target.value);
             }}
             className="glass pl-[2.6rem] pr-7 paddingY w-full custom-fz outline-none text-white placeholder:text-white"
             type="text"

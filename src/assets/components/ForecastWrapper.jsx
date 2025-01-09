@@ -2,7 +2,7 @@ import React from "react";
 import ForecastCard from "./ForecastCard";
 import sun from "../img/sun.png";
 
-export default function ForecastWrapper({ unit, forecast }) {
+export default function ForecastWrapper({ unit, dailyForecast, forecast }) {
   return (
     <div className="flex-1 flex flex-col">
       <div className="border-style glass p-5 rounded-xl custom-fz mb-4">
@@ -23,7 +23,10 @@ export default function ForecastWrapper({ unit, forecast }) {
       </div>
       <div className=" glass border-style flex-1 pt-10 p-5 rounded-xl">
         <div className="flex h-[80px] custom-fz">
-          <h1>Hello</h1>
+          <div>
+            <h1 className="font-bold text-[1.1rem] mb-2">{dailyForecast.forecast.forecastday[0].astro.sunrise}</h1>
+            <p className="text-lightGrey">sunrise</p>
+          </div>
           <div className="relative flex-1">
             <img
               className="w-[40px] absolute left-1/2 -translate-x-1/2 -top-5 sun"
@@ -34,7 +37,10 @@ export default function ForecastWrapper({ unit, forecast }) {
               <div className="w-[350px] h-[60px] gradient"></div>
             </div>
           </div>
-          <h1>Helo</h1>
+          <div>
+            <h1 className="font-bold text-[1.1rem] mb-2">{dailyForecast.forecast.forecastday[0].astro.sunset}</h1>
+            <p className="text-lightGrey">sunset</p>
+          </div>
         </div>
       </div>
     </div>

@@ -96,8 +96,8 @@ export default function WeatherMainInfo({ unit, weather, dailyForecast }) {
     return `${day} ${month}, ${weekday} ${year}`;
   }
 
-  const time = dailyForecast.location.localtime.slice(10)
-  const date = dailyForecast.location.localtime.slice(0, 10)
+  const time = dailyForecast.location.localtime.slice(10);
+  const date = dailyForecast.location.localtime.slice(0, 10);
 
   return (
     <div className="relative lg:w-[360px] z-20 backdrop-blur-sm">
@@ -112,82 +112,73 @@ export default function WeatherMainInfo({ unit, weather, dailyForecast }) {
               <h1 className="font-medium custom-fz">{`${weather.name}, ${dailyForecast.location.country}`}</h1>
             </div>
           </div>
-          <div className="flex items-center gap-1 smaller-fz">
+          <div className="flex items-center gap-3 smaller-fz">
             <p className="text-lightGrey">{formatDate(date)}</p>
             <p className="text-lightGrey">{time}</p>
           </div>
         </div>
 
-        <div className="flex items-center gap-4 justify-between mb-6">
-          <div className="flex items-center gap-4">
-            <img
-              className="w-[70px]"
-              src={getWeatherIcon(weather.weather[0].description)}
-              alt=""
-            />
-            <div>
-              <h1 className="text-[2.7rem] font-bold">
-                {unit == "metric" ? dailyForecast.current.temp_c : dailyForecast.current.temp_f}
-                <sup className=" text-[1.6rem]">°</sup>
-              </h1>
-              <p className="-translate-y-2 text-[0.8rem]">
-                {titledCaseDescription}
-              </p>
+        <div className="flex items-start justify-between gap-6 md:flex-row md:items-center lg:items-start flex-col lg:flex-col lg:gap-6 md:gap-[5rem]">
+          <div className="flex items-center gap-4 justify-between">
+            <div className="flex items-center gap-4">
+              <img
+                className="w-[90px]"
+                src={getWeatherIcon(weather.weather[0].description)}
+                alt="weather icon"
+              />
+              <div>
+                <h1 className="text-[3rem] font-bold">
+                  {convertTemp(weather.main.temp)}
+                  {/* {unit == "metric"
+                    ? dailyForecast.current.temp_c
+                    : dailyForecast.current.temp_f} */}
+                  <sup className=" text-[1.6rem]">°</sup>
+                </h1>
+                <p className="-translate-y-2 text-[0.8rem]">
+                  {titledCaseDescription}
+                </p>
+              </div>
             </div>
-          </div>
-          {/* <div className="text-white">
-            <div className="bg-primary mb-2 px-3 text-[0.8rem] py-1 flex items-center justify-center gap-3 rounded-full">
-              <p className="text-white">H</p>
-              <p className="text-white font-medium">
-                {convertTemp(weather.main.temp_max)}°
-              </p>
-            </div>
-            <div className="bg-primary px-3 text-[0.8rem] flex py-1 items-center justify-center gap-3 rounded-full">
-              <p className="text-white">L</p>
-              <p className="text-white font-medium">
-                {convertTemp(weather.main.temp_min)}°
-              </p>
-            </div>
-          </div> */}
-        </div>
-
-        <div className="flex items-center justify-between custom-fz">
-          <div className="flex flex-col items-center relative group">
-            <img
-              className="w-[1.5rem] mb-1"
-              src={pressureGuage}
-              alt="humidity icon"
-            />
-            <p className="font-semibold">{weather.main.humidity}hPa</p>
-            <p className="text-[0.75rem] font-medium text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
-              pressure
-            </p>
-          </div>
-          <div className="flex flex-col items-center relative group">
-            <img
-              className="w-[1.5rem] mb-1"
-              src={humidity}
-              alt="pressure icon"
-            />
-            <p className="font-semibold">{weather.main.humidity}%</p>
-            <p className="text-[0.75rem] font-medium text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
-              humidity
-            </p>
-          </div>
-          <div className="flex flex-col items-center relative group">
-            <img className="w-[1.5rem] mb-1" src={cloud} alt="cloud icon" />
-            <p className="font-semibold">{weather.clouds.all}%</p>
-            <p className="text-[0.75rem] font-medium text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
-              cloudiness
-            </p>
           </div>
 
-          <div className="flex flex-col items-center relative group">
-            <img className="w-[1.5rem] mb-1" src={wind} alt="wind icon" />
-            <p className="font-semibold">{weather.wind.speed}m/s</p>
-            <p className="text-[0.75rem] font-medium text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
-              wind <br /> speed
-            </p>
+          <div className="flex items-center justify-between w-full md:flex-1 lg:w-full custom-fz">
+            <div className="flex flex-col items-center relative group">
+              <img
+                className="w-[1.5rem] mb-1"
+                src={pressureGuage}
+                alt="humidity icon"
+              />
+              <p className="font-semibold">{weather.main.humidity}hPa</p>
+              <p className="text-[0.75rem] font-medium text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
+                pressure
+              </p>
+            </div>
+            <div className="flex flex-col items-center relative group">
+              <img
+                className="w-[1.5rem] mb-1"
+                src={humidity}
+                alt="pressure icon"
+              />
+              <p className="font-semibold">{weather.main.humidity}%</p>
+              <p className="text-[0.75rem] font-medium text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
+                humidity
+              </p>
+            </div>
+            <div className="flex flex-col items-center relative group">
+              <img className="w-[1.5rem] mb-1" src={cloud} alt="cloud icon" />
+              <p className="font-semibold">{weather.clouds.all}%</p>
+              <p className="text-[0.75rem] font-medium text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
+                cloudiness
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center relative group">
+              <img className="w-[1.5rem] mb-1" src={wind} alt="wind icon" />
+              <p className="font-semibold">{weather.wind.speed}m/s</p>
+              <p className="text-[0.75rem] font-medium text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
+                wind <br /> speed
+              </p>
+            </div>
           </div>
         </div>
       </div>
