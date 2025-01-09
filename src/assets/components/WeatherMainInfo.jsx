@@ -10,13 +10,7 @@ import randomWeather from "../img/random-weather.png";
 import cloud from "../img/cloud.png";
 import pressureGuage from "../img/pressure-gauge.png";
 import humidity from "../img/humidity.png";
-import precipitation from "../img/precipitation.png";
-import sunRise from "../img/sunrise.png";
-import sunSet from "../img/sun-set.png";
-import seaLevel from "../img/sea-level.png";
-import groundLevel from "../img/ground-level.png";
 import wind from "../img/windy.png";
-import visibility from "../img/visibility.png";
 import { Icon } from "@iconify/react/dist/iconify.cjs";
 import React from "react";
 
@@ -158,7 +152,7 @@ export default function WeatherMainInfo({ unit, weather }) {
               alt="humidity icon"
             />
             <p className="font-semibold">{weather.main.humidity}hPa</p>
-            <p className="text-[0.75rem] text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
+            <p className="text-[0.75rem] font-medium text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
               pressure
             </p>
           </div>
@@ -169,14 +163,14 @@ export default function WeatherMainInfo({ unit, weather }) {
               alt="pressure icon"
             />
             <p className="font-semibold">{weather.main.humidity}%</p>
-            <p className="text-[0.75rem] text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
+            <p className="text-[0.75rem] font-medium text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
               humidity
             </p>
           </div>
           <div className="flex flex-col items-center relative group">
             <img className="w-[1.5rem] mb-1" src={cloud} alt="cloud icon" />
             <p className="font-semibold">{weather.clouds.all}%</p>
-            <p className="text-[0.75rem] text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
+            <p className="text-[0.75rem] font-medium text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
               cloudiness
             </p>
           </div>
@@ -184,7 +178,7 @@ export default function WeatherMainInfo({ unit, weather }) {
           <div className="flex flex-col items-center relative group">
             <img className="w-[1.5rem] mb-1" src={wind} alt="wind icon" />
             <p className="font-semibold">{weather.wind.speed}m/s</p>
-            <p className="text-[0.75rem] text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
+            <p className="text-[0.75rem] font-medium text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">
               wind <br /> speed
             </p>
           </div>

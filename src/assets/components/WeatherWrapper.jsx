@@ -1,7 +1,6 @@
 import React from "react";
 import WeatherNav from "./WeatherNav";
 import WeatherMainInfo from "./WeatherMainInfo";
-import LocationMap from "./LocationMap";
 import ForecastWrapper from "./ForecastWrapper";
 import DailyForecast from "./DailyForecast";
 
@@ -44,7 +43,6 @@ export default function WeatherWrapper({
             </div>
           </div>
         </div>
-        {/* <LocationMap latitude={lat} longitude={lon} /> */}
       </div>
 
       <div className="flex flex-col lg:flex-row gap-4">

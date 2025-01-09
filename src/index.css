@@ -28,6 +28,26 @@
   );
   -webkit-backdrop-filter: blur(15px);
 }
+.curved-line {
+  height: 150px;
+  border: dotted 2px hsla(0, 0%, 90%, 1);
+  border-color: hsla(0, 0%, 90%, 1) transparent transparent transparent;
+  border-radius: 50%/150px 150px 0 0;
+}
+@keyframes rotate {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+.sun {
+  animation: rotate 3s infinite linear;
+}
+.gradient {
+  background-image: linear-gradient(to right, rgba(141, 141, 141, 0.258), rgba(77, 77, 77, 0.258));
+}
 
 @layer components {
   .max-width {

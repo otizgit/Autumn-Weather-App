@@ -74,7 +74,7 @@ export default function ForecastCard({ unit, forecast }) {
         alt="weather icon"
       />
       <p className="font-semibold">{convertTemp(forecast.main.temp)}°</p>
-      <p className="text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">{forecast.weather[0].description}</p>
+      <p className="text-white text-[0.75rem] text-center font-medium absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">{forecast.weather[0].description}</p>
     </div>
   );
 }
