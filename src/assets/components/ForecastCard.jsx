@@ -66,14 +66,15 @@ export default function ForecastCard({ unit, forecast }) {
   }
 
   return (
-    <div className="custom-fz flex flex-col items-center gap-1">
-      <p>{modifiedTimeOfForecast}</p>
+    <div className="custom-fz flex flex-col items-center gap-1 group relative">
+      <p className="font-medium">{modifiedTimeOfForecast}</p>
       <img
         className="w-[30px]"
         src={getWeatherIcon(forecast.weather[0].description)}
-        alt=""
+        alt="weather icon"
       />
       <p className="font-semibold">{convertTemp(forecast.main.temp)}°</p>
+      <p className="text-white absolute rounded-lg bg-primary px-2 bottom-0 hidden group-hover:block">{forecast.weather[0].description}</p>
     </div>
   );
 }
