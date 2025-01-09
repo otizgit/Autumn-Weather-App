@@ -17,8 +17,8 @@ export default function WeatherWrapper({
   const zoom = 15;
 
   return (
-    <div className="container min-h-screen max-w-[100vw] relative py-[3rem]">
-      <div className="max-width">
+    <div className="max-width flex flex-col gap-4">
+      <div>
         <WeatherNav
           unit={unit}
           setUnit={setUnit}
@@ -29,10 +29,10 @@ export default function WeatherWrapper({
         <div className="flex gap-4">
           <WeatherMainInfo weather={weather} />
           <div className="flex-1">
-            <div className="glass border-style rounded-xl overflow-hidden mb-4">
+            <div className="glass h-full border-style rounded-xl overflow-hidden mb-4">
               <iframe
                 width="100%"
-                height="300"
+                height="100%"
                 style={{ border: "none" }}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -40,10 +40,14 @@ export default function WeatherWrapper({
                 title="google map"
               ></iframe>
             </div>
-            <ForecastWrapper forecast={forecast} />
           </div>
         </div>
         {/* <LocationMap latitude={lat} longitude={lon} /> */}
+      </div>
+
+      <div className="flex gap-4">
+        <div></div>
+        <ForecastWrapper forecast={forecast} />
       </div>
     </div>
   );

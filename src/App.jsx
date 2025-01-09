@@ -35,7 +35,7 @@ export default function App() {
   }, [unit, trigger]);
 
   return (
-    <div>
+    <div className="container min-h-screen max-w-[100vw] relative py-[3rem]">
       {weather ? (
         <WeatherWrapper
           weather={weather}

@@ -91,8 +91,8 @@ export default function WeatherMainInfo({ weather }) {
   const sunsetTime = sunsetDate.toLocaleTimeString("en-US", secondOptions);
   return (
     <div className="relative w-[350px] z-20 backdrop-blur-sm">
-      <div className="shadow-lg glass border-style rounded-xl p-5 mb-4">
-        <div>
+      <div className="shadow-lg glass border-style rounded-xl p-5">
+        <div className="mb-6">
           <div className="flex items-center gap-1 mb-1">
             <Icon
               className="text-white text-[1.1rem]"
@@ -108,7 +108,7 @@ export default function WeatherMainInfo({ weather }) {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 justify-between">
+        <div className="flex items-center gap-4 justify-between mb-6">
           <div className="flex items-center gap-4">
             <img
               className="w-[70px]"
@@ -116,11 +116,11 @@ export default function WeatherMainInfo({ weather }) {
               alt=""
             />
             <div>
-              <h1 className="text-[2.5rem] font-medium">
+              <h1 className="text-[2.7rem] font-bold">
                 {weather.main.temp}
                 <sup className=" text-[1.6rem]">°</sup>
               </h1>
-              <p className="-translate-y-2 text-[0.85rem] custom-fz">
+              <p className="-translate-y-2 text-[0.8rem]">
                 {titledCaseDescription}
               </p>
             </div>
@@ -136,83 +136,40 @@ export default function WeatherMainInfo({ weather }) {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="shadow-lg glass border-style rounded-xl p-5 mb-4">
-        <div className="flex items-center justify-between custom-fz mb-6">
-          <div className="flex flex-col items-center">
-            <img
-              className="w-[2.1rem] mb-2"
-              src={humidity}
-              alt="humidity icon"
-            />
-            <p className="font-semibold">{weather.main.humidity}hPa</p>
-            <p className="text-[0.75rem] text-lightGrey">pressure</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <img
-              className="w-[2.1rem] mb-2"
-              src={pressureGuage}
-              alt="pressure icon"
-            />
-            <p className="font-semibold">{weather.main.humidity}%</p>
-            <p className="text-[0.75rem] text-lightGrey">humidity</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <img className="w-[2.1rem] mb-2" src={cloud} alt="cloud icon" />
-            <p className="font-semibold">{weather.clouds.all}%</p>
-            <p className="text-[0.75rem] text-lightGrey">cloudiness</p>
-          </div>
-        </div>
 
         <div className="flex items-center justify-between custom-fz">
           <div className="flex flex-col items-center">
-            <img className="w-[2.1rem] mb-2" src={wind} alt="wind icon" />
+            <img
+              className="w-[1.5rem] mb-1"
+              src={pressureGuage}
+              alt="humidity icon"
+            />
+            <p className="font-semibold">{weather.main.humidity}hPa</p>
+            {/* <p className="text-[0.75rem] text-lightGrey">pressure</p> */}
+          </div>
+          <div className="flex flex-col items-center">
+            <img
+              className="w-[1.5rem] mb-1"
+              src={humidity}
+              alt="pressure icon"
+            />
+            <p className="font-semibold">{weather.main.humidity}%</p>
+            {/* <p className="text-[0.75rem] text-lightGrey">humidity</p> */}
+          </div>
+          <div className="flex flex-col items-center">
+            <img className="w-[1.5rem] mb-1" src={cloud} alt="cloud icon" />
+            <p className="font-semibold">{weather.clouds.all}%</p>
+            {/* <p className="text-[0.75rem] text-lightGrey">cloudiness</p> */}
+          </div>
+
+          <div className="flex flex-col items-center">
+            <img className="w-[1.5rem] mb-1" src={wind} alt="wind icon" />
             <p className="font-semibold">{weather.wind.speed}m/s</p>
-            <p className="text-[0.75rem] text-lightGrey">
+            {/* <p className="text-[0.75rem] text-lightGrey">
               wind <br /> speed
-            </p>
-          </div>
-          <div className="flex flex-col items-center">
-            <img
-              className="w-[2.1rem] mb-2"
-              src={visibility}
-              alt="visibility icon"
-            />
-            <p className="font-semibold">{weather.visibility / 1000}km</p>
-            <p className="text-[0.75rem] text-lightGrey">visibility</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <img
-              className="w-[2.1rem] mb-2"
-              src={seaLevel}
-              alt="sea-level icon"
-            />
-            <p className="font-semibold">{weather.main.sea_level / 10}kPa</p>
-            <p className="text-[0.75rem] text-lightGrey">sea level</p>
+            </p> */}
           </div>
         </div>
-
-        {/* <div className="flex items-center custom-fz">
-          {countryName === "Nigeria" && (
-            <div className="flex flex-col items-center">
-              <img
-                className="w-[2.1rem] mb-2"
-                src={sunRise}
-                alt="pressure icon"
-              />
-              <p className="font-semibold">{sunriseTime}</p>
-              <p className="text-[0.75rem] text-lightGrey">sun rise</p>
-            </div>
-          )}
-          {countryName === "Nigeria" && (
-            <div className="flex flex-col items-center">
-              <img className="w-[2.1rem] mb-2" src={sunSet} alt="cloud icon" />
-              <p className="font-semibold">{sunsetTime}</p>
-              <p className="text-[0.75rem] text-lightGrey">sun set</p>
-            </div>
-          )}
-        </div> */}
       </div>
     </div>
   );
