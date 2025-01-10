@@ -14,6 +14,13 @@ export default function WeatherNav({ unit, setUnit, setTrigger, city, setCity })
     setTrigger((prevTrigger) => !prevTrigger);
   };
 
+  const handleEnterClick = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      searchLocationData();
+    }
+  };
+
   return (
     <div className="mb-6 flex items-center gap-4 justify-between">
       <div className="relative rounded-full overflow-hidden border-style w-[300px]">
@@ -24,6 +31,7 @@ export default function WeatherNav({ unit, setUnit, setTrigger, city, setCity })
         <form onSubmit={(e) => searchLocationData(e)}>
           <input
             value={city}
+            onKeyDown={(e) => handleEnterClick(e)}
             onChange={(e) => {
               setCity(e.target.value);
             }}
