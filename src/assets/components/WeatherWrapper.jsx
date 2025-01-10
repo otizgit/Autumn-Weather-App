@@ -32,25 +32,23 @@ export default function WeatherWrapper({
         <ErrorPage />
       ) : (
         <div>
-          <div>
-            <div className="flex flex-col lg:flex-row gap-4">
-              <WeatherMainInfo
-                unit={unit}
-                weather={weather}
-                dailyForecast={dailyForecast}
-              />
-              <div className="flex-1">
-                <div className="glass h-[300px] lg:h-full border-style rounded-xl overflow-hidden mb-4">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    style={{ border: "none" }}
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    src={`https://maps.google.com/maps?q=${lat},${lon}&z=${zoom}&output=embed`}
-                    title="google map"
-                  ></iframe>
-                </div>
+          <div className="flex flex-col lg:flex-row gap-4 mb-4">
+            <WeatherMainInfo
+              unit={unit}
+              weather={weather}
+              dailyForecast={dailyForecast}
+            />
+            <div className="flex-1">
+              <div className="glass h-[300px] lg:h-full border-style rounded-xl overflow-hidden mb-4">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  style={{ border: "none" }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src={`https://maps.google.com/maps?q=${lat},${lon}&z=${zoom}&output=embed`}
+                  title="google map"
+                ></iframe>
               </div>
             </div>
           </div>

@@ -48,7 +48,7 @@ export default function DailyForecast({ unit, dailyForecast }) {
                     : forecast.day.avgtemp_f}
                   °
                 </p>
-                <p className="text-white text-[0.75rem] font-medium absolute rounded-lg left-full text-center bg-primary px-2 top-1/2 -translate-y-1/2 hidden group-hover:block">
+                <p className="text-white custom-fz font-medium absolute rounded-lg left-full text-center bg-primary px-2 top-1/2 -translate-y-1/2 hidden group-hover:block">
                   {forecast.day.condition.text}
                 </p>
               </div>
