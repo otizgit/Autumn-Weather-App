@@ -17,7 +17,7 @@ export default function WeatherNav({ unit, setUnit, setTrigger, city, setCity })
   const handleEnterClick = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      searchLocationData();
+      searchLocationData(e);
     }
   };
 
