@@ -11,6 +11,7 @@ export default function App() {
 
   const [city, setCity] = useState("Lagos");
   const [trigger, setTrigger] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchWeatherAndForecast = async () => {
@@ -34,12 +35,11 @@ export default function App() {
         setWeather(currentWeatherResponse.data);
         setForecast(forecastResponse.data.list.slice(1, 11));
         setDailyForecast(dailyForecastResponse.data);
+        setError(false);
       } catch (err) {
-        setError("Error fetching data. Please try again.");
-        console.error(err);
+        setError(true);
       }
     };
-
     fetchWeatherAndForecast();
   }, [unit, trigger]);
 
@@ -55,6 +55,7 @@ export default function App() {
           setTrigger={setTrigger}
           city={city}
           setCity={setCity}
+          error={error}
         />
       ) : (
         <LoadingScreen />
