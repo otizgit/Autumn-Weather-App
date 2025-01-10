@@ -26,7 +26,7 @@ export default function DailyForecast({ unit, dailyForecast }) {
     const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const weekday = dayNames[date.getDay()];
 
-    return `${day} ${month}, ${weekday}`;
+    return `${weekday}, ${day} ${month}`;
   }
 
   return (

@@ -102,7 +102,7 @@ export default function WeatherMainInfo({ unit, weather, dailyForecast }) {
     const year = date.getFullYear();
     const weekday = dayNames[date.getDay()];
 
-    return `${day} ${month}, ${weekday} ${year}`;
+    return `${weekday}, ${day} ${month} ${year}`;
   }
 
   const time = dailyForecast.location.localtime.slice(10);
