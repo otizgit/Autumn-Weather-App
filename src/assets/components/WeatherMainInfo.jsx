@@ -16,6 +16,11 @@ import React from "react";
 
 export default function WeatherMainInfo({ unit, weather, dailyForecast }) {
   function getWeatherIcon(description) {
+    // if (description === "clear sky") {
+    //   return clearSky
+    // } else if (description == "few clouds") {
+    //   return fewClouds
+    // }
     switch (description) {
       case "clear sky":
         return clearSky;
@@ -42,6 +47,10 @@ export default function WeatherMainInfo({ unit, weather, dailyForecast }) {
       case "mist":
         return fog;
       case "fog":
+        return fog;
+      case "smoke":
+        return fog;
+      case "haze":
         return fog;
       case "tornado":
         return tornado;

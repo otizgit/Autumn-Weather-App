@@ -48,7 +48,7 @@
   }
 }
 .sun {
-  animation: rotate 3s infinite linear;
+  animation: rotate 15s infinite linear;
 }
 .gradient {
   background-image: linear-gradient(to right, rgba(141, 141, 141, 0.258), rgba(77, 77, 77, 0.258), transparent);
