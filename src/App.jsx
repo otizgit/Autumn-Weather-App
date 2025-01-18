@@ -6,8 +6,8 @@ import WeatherWrapper from "./assets/components/WeatherWrapper";
 export default function App() {
   const [unit, setUnit] = useState("metric");
   const [weather, setWeather] = useState(null);
-  const [forecast, setForecast] = useState(null);
-  const [dailyForecast, setDailyForecast] = useState(null);
+  const [forecast, setForecast] = useState([]);
+  const [dailyForecast, setDailyForecast] = useState([]);
 
   const [city, setCity] = useState("Lagos");
   const [trigger, setTrigger] = useState(false);
