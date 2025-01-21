@@ -1,7 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Icon } from "@iconify/react/dist/iconify.cjs";
+import axios from "axios";
 
-export default function WeatherNav({ unit, setUnit, setTrigger, city, setCity }) {
+export default function WeatherNav({
+  setWeather,
+  setDailyForecast,
+  setForecast,
+  setError,
+  unit,
+  setUnit,
+  setTrigger,
+  trigger,
+  city,
+  setCity,
+}) {
+  useEffect(() => {
+    const fetchWeatherAndForecast = async () => {
+      const apiKey = "644e8f48a2d7e612cd94f5dc157eb72c";
+
+      const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+      const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+      const dailyForecastUrl = `https://api.weatherapi.com/v1/forecast.json?key=506e4d8cdfde415086e105419250901&q=${city}&days=8`;
+
+      try {
+        const [
+          currentWeatherResponse,
+          forecastResponse,
+          dailyForecastResponse,
+        ] = await Promise.all([
+          axios.get(currentWeatherUrl),
+          axios.get(forecastUrl),
+          axios.get(dailyForecastUrl),
+        ]);
+
+        setWeather(currentWeatherResponse.data);
+        setForecast(forecastResponse.data.list.slice(1, 11));
+        setDailyForecast(dailyForecastResponse.data);
+        setError(false);
+      } catch (err) {
+        setError(true);
+      }
+    };
+    fetchWeatherAndForecast();
+  }, [unit, trigger]);
+
   const setToStandard = () => {
     setUnit("standard");
   };
