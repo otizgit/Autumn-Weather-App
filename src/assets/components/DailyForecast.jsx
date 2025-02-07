@@ -26,7 +26,7 @@ export default function DailyForecast({ unit, dailyForecast }) {
     const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const weekday = dayNames[date.getDay()];
 
-    return `${weekday}, ${day} ${month}`;
+    return `${weekday}, ${month} ${day}`;
   }
 
   return (
@@ -35,24 +35,31 @@ export default function DailyForecast({ unit, dailyForecast }) {
       <div className="flex flex-col gap-2">
         {dailyForecast.map((forecast, index) => {
           return (
-            <div key={index} className="custom-fz flex items-center justify-between">
-              <div className="flex items-center gap-2 relative group">
+            <div
+              key={index}
+              className="custom-fz flex items-center justify-between pb-2"
+            >
+              <div className="flex items-center gap-2">
                 <img
-                  className="w-[30px]"
+                  className="w-[45px]"
                   src={forecast.day.condition.icon}
                   alt="weather icon"
                 />
-                <p className="font-semibold">
+                <div>
+                  <p className="font-medium custom-fz">{formatDate(forecast.date)}</p>
+                  <p className="small-fz text-lightGrey font-medium">
+                    {forecast.day.condition.text}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 relative group">
+                <p className="font-semibold text-[0.95rem]">
                   {unit == "metric"
                     ? forecast.day.avgtemp_c
                     : forecast.day.avgtemp_f}
                   °
                 </p>
-                <p className="text-white custom-fz font-medium absolute rounded-lg left-full text-center bg-primary px-2 top-1/2 -translate-y-1/2 hidden group-hover:block">
-                  {forecast.day.condition.text}
-                </p>
               </div>
-              <p className="font-medium">{formatDate(forecast.date)}</p>
             </div>
           );
         })}

@@ -17,7 +17,7 @@ export default function WeatherWrapper() {
 
   let lat;
   let lon;
-  const zoom = 15;
+  const zoom = 11;
 
   if (weather) {
     lat = weather.coord.lat;
