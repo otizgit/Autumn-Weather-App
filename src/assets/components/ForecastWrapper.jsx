@@ -8,22 +8,9 @@ export default function ForecastWrapper({ unit, dailyForecast, forecast }) {
     <div className="flex-1 flex flex-col">
       <div className="border-style glass p-5 rounded-xl custom-fz mb-4">
         <h1 className="font-semibold mb-4 custom-fz">Hourly Forecast</h1>
-        <div className="w-full h-[300px]">
+        <div className="w-full h-[250px]">
           <LineChart unit={unit} forecast={forecast} />
         </div>
-        {/* <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-10 gap-4 items-center">
-          {forecast
-            ? forecast.map((forecastData, index) => {
-                return (
-                  <ForecastCard
-                    key={index}
-                    unit={unit}
-                    forecast={forecastData}
-                  />
-                );
-              })
-            : null}
-        </div> */}
       </div>
       <div className=" glass border-style flex-1 pt-10 p-5 rounded-xl">
         <div className="flex h-[80px] custom-fz">
