@@ -31,7 +31,12 @@ export default function DailyForecast({ unit, dailyForecast }) {
 
   return (
     <div className="lg:w-[360px] shadow-lg glass border-style rounded-xl p-5">
-      <h1 className="font-semibold mb-4 custom-fz">Daily Forecast</h1>
+      <h1 className="font-semibold custom-fz mb-2">Daily Forecast</h1>
+      <div className="mb-3 flex justify-between gap-2">
+        <button className="custom-fz">3 days</button>
+        <button className="custom-fz">7 days</button>
+        <button className="custom-fz">10 days</button>
+      </div>
       <div className="flex flex-col gap-2">
         {dailyForecast.map((forecast, index) => {
           return (
