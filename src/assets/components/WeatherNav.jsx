@@ -13,6 +13,7 @@ export default function WeatherNav({
   trigger,
   city,
   setCity,
+  forecastDay,
 }) {
   useEffect(() => {
     const fetchWeatherAndForecast = async () => {
@@ -20,7 +21,7 @@ export default function WeatherNav({
 
       const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
       const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
-      const dailyForecastUrl = `https://api.weatherapi.com/v1/forecast.json?key=506e4d8cdfde415086e105419250901&q=${city}&days=8`;
+      const dailyForecastUrl = `https://api.weatherapi.com/v1/forecast.json?key=506e4d8cdfde415086e105419250901&q=${city}&days=${forecastDay}`;
 
       try {
         const [

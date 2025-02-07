@@ -10,6 +10,7 @@ export default function WeatherWrapper() {
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
   const [dailyForecast, setDailyForecast] = useState([]);
+  const [forecastDay, setForecastDay] = useState(3);
 
   const [city, setCity] = useState("");
   const [trigger, setTrigger] = useState(false);
@@ -37,6 +38,7 @@ export default function WeatherWrapper() {
         trigger={trigger}
         city={city}
         setCity={setCity}
+        forecastDay={forecastDay}
       />
       {weather ? (
         error ? (
@@ -68,6 +70,8 @@ export default function WeatherWrapper() {
                 <DailyForecast
                   unit={unit}
                   dailyForecast={dailyForecast.forecast.forecastday.slice(1)}
+                  forecastDay={forecastDay}
+                  setForecastDay={setForecastDay}
                 />
                 <ForecastWrapper
                   unit={unit}

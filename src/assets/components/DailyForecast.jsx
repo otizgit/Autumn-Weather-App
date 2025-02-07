@@ -1,6 +1,13 @@
 import React from "react";
 
-export default function DailyForecast({ unit, dailyForecast }) {
+export default function DailyForecast({
+  unit,
+  dailyForecast,
+  forecastDay,
+  setForecastDay,
+}) {
+  console.log(forecastDay);
+
   function formatDate(dateString) {
     const date = new Date(dateString);
     if (isNaN(date)) {
@@ -29,13 +36,27 @@ export default function DailyForecast({ unit, dailyForecast }) {
     return `${weekday}, ${month} ${day}`;
   }
 
+  const forecastDaysArray = [3, 7, 10];
+
+  const handleForecastDaysClick = (day) => {
+    setForecastDay(day);
+  };
+
   return (
     <div className="lg:w-[360px] shadow-lg glass border-style rounded-xl p-5">
       <h1 className="font-semibold custom-fz mb-2">Daily Forecast</h1>
-      <div className="mb-3 flex justify-between gap-2">
-        <button className="custom-fz">3 days</button>
-        <button className="custom-fz">7 days</button>
-        <button className="custom-fz">10 days</button>
+      <div className="mb-3 flex justify-between gap-2 bg-[#81818142] p-1 rounded-full">
+        {forecastDaysArray.map((day) => (
+          <button
+            onClick={() => handleForecastDaysClick(day)}
+            key={day}
+            className={`text-[0.85rem] px-4 py-2 ${
+              day === forecastDay ? "bg-primary" : ""
+            } font-medium hover:bg-primary rounded-full`}
+          >
+            {day} days
+          </button>
+        ))}
       </div>
       <div className="flex flex-col gap-2">
         {dailyForecast.map((forecast, index) => {
@@ -51,7 +72,9 @@ export default function DailyForecast({ unit, dailyForecast }) {
                   alt="weather icon"
                 />
                 <div>
-                  <p className="font-medium custom-fz">{formatDate(forecast.date)}</p>
+                  <p className="font-medium custom-fz">
+                    {formatDate(forecast.date)}
+                  </p>
                   <p className="small-fz text-lightGrey font-medium">
                     {forecast.day.condition.text}
                   </p>
