@@ -39,7 +39,6 @@ export default function LineChart({ unit, forecast }) {
 
   function convertTemp(temp) {
     if (unit == "metric") {
-      console.log("Hello world");
       return temp;
     } else {
       return Number((temp * 1.8 + 32).toFixed(2));
@@ -50,12 +49,20 @@ export default function LineChart({ unit, forecast }) {
     forecastArray.push(convertTemp(forecastData.main.temp));
   });
 
+  const weatherDescriptionArray = [];
+  forecast.map((forecastData) => {
+    const firstLetter = forecastData.weather[0].description.slice(0, 1);
+    const restLetters = forecastData.weather[0].description.slice(1);
+    weatherDescriptionArray.push(firstLetter.toUpperCase() + restLetters);
+  });
+
   const data = {
     labels: forecastTimeArray,
     datasets: [
       {
         label: "Weather",
         data: forecastArray,
+        weatherDesc: weatherDescriptionArray,
         borderColor: "rgba(75, 192, 192, 1)",
         backgroundColor: "rgba(75, 192, 192, 0.2)",
         borderWidth: 2,
@@ -75,6 +82,16 @@ export default function LineChart({ unit, forecast }) {
     plugins: {
       legend: {
         display: false,
+      },
+      tooltip: {
+        callbacks: {
+          label: function (tooltipItem) {
+            let value = tooltipItem.raw;
+            let weatherDesc =
+              tooltipItem.dataset.weatherDesc[tooltipItem.dataIndex];
+            return unit == "metric" ? `Weather: ${value}°C, ${weatherDesc}` : `Weather: ${value}°F, ${weatherDesc}`;
+          },
+        },
       },
     },
     scales: {
