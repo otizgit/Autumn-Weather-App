@@ -11,7 +11,7 @@
 }
 .container {
   min-height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
     url("https://ik.imagekit.io/uldpul7gs/tr:w-1200/amazing-beautiful-sky-with-clouds.jpg?updatedAt=1735766892144");
   background-position: center;
   background-repeat: no-repeat;
