@@ -50,7 +50,7 @@ export default function DailyForecast({
           <button
             onClick={() => handleForecastDaysClick(day)}
             key={day}
-            className={`text-[0.85rem] px-4 py-2 ${
+            className={`text-[0.85rem] px-5 py-[0.3rem] ${
               day === forecastDay ? "bg-primary" : ""
             } font-medium hover:bg-primary rounded-full`}
           >
