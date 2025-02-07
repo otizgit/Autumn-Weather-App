@@ -6,8 +6,6 @@ export default function DailyForecast({
   forecastDay,
   setForecastDay,
 }) {
-  console.log(forecastDay);
-
   function formatDate(dateString) {
     const date = new Date(dateString);
     if (isNaN(date)) {
