@@ -8,7 +8,7 @@ export default function App() {
   });
 
   return (
-    <div className="container min-h-screen max-w-[100vw] relative py-[3rem]">
+    <div className="container min-h-screen max-w-[100vw] relative py-[3.5rem]">
       <WeatherWrapper />
     </div>
   );

@@ -90,7 +90,7 @@ export default function DailyForecast({
           );
         })}
         {dailyForecast.length < 3 ? (
-          <div className="text-center custom-fz">No more forecasts available.</div>
+          <div className="text-center custom-fz">No more forecasts available at the moment.</div>
         ) : null}
       </div>
     </div>
