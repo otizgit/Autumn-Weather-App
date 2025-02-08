@@ -29,6 +29,8 @@ export default function WeatherMainInfo({ unit, weather, dailyForecast }) {
         return brokenClouds;
       case "light rain":
         return lightRain;
+      case "drizzle":
+        return lightRain;
       case "moderate rain":
         return lightRain;
       case "heavy rain":
