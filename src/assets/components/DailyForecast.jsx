@@ -48,7 +48,7 @@ export default function DailyForecast({
           <button
             onClick={() => handleForecastDaysClick(day)}
             key={day}
-            className={`text-[0.85rem] px-5 py-[0.3rem] ${
+            className={`text-[0.8rem] px-5 py-[0.3rem] ${
               day === forecastDay ? "bg-primary" : ""
             } font-medium hover:bg-primary rounded-full`}
           >
@@ -89,6 +89,9 @@ export default function DailyForecast({
             </div>
           );
         })}
+        {dailyForecast.length < 3 ? (
+          <div className="text-center custom-fz">No more forecasts available.</div>
+        ) : null}
       </div>
     </div>
   );
