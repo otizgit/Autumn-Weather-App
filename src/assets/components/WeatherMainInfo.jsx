@@ -162,7 +162,7 @@ export default function WeatherMainInfo({ unit, weather, dailyForecast }) {
                 src={humidity}
                 alt="pressure icon"
               />
-              <p className="font-semibold">{weather.main.humidity}%</p>
+              <p className="font-semibold mb-1">{weather.main.humidity}%</p>
               <p className="text-[0.75rem] font-medium text-lightGrey">
                 humidity
               </p>
