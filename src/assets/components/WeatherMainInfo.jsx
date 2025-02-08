@@ -33,6 +33,8 @@ export default function WeatherMainInfo({ unit, weather, dailyForecast }) {
         return lightRain;
       case "moderate rain":
         return lightRain;
+      case "light intensity drizzle":
+        return lightRain;
       case "heavy rain":
         return thunderStorm;
       case "thunderstorm":
@@ -162,8 +164,8 @@ export default function WeatherMainInfo({ unit, weather, dailyForecast }) {
                 src={humidity}
                 alt="pressure icon"
               />
-              <p className="font-semibold mb-1">{weather.main.humidity}%</p>
-              <p className="text-[0.75rem] font-medium text-lightGrey">
+              <p className="font-semibold">{weather.main.humidity}%</p>
+              <p className="text-[0.75rem] font-medium text-lightGrey mt-1">
                 humidity
               </p>
             </div>
