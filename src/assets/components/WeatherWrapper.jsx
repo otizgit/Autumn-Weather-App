@@ -115,7 +115,7 @@ export default function WeatherWrapper() {
           ) : null}
         </div>
       ) : (
-        <div className="grid place-items-center bg-[#0000009e] backdrop-blur-md inset-0 fixed h-full w-full">
+        <div className="grid place-items-center bg-[#00000064] backdrop-blur-md inset-0 fixed h-full w-full">
           <div>
             <BeatLoader color="#116aa2" size={30} loading={true} />
           </div>
