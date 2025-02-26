@@ -4,6 +4,7 @@ import WeatherMainInfo from "./WeatherMainInfo";
 import ForecastWrapper from "./ForecastWrapper";
 import DailyForecast from "./DailyForecast";
 import ErrorPage from "./ErrorPage";
+import { BeatLoader, PuffLoader, RingLoader, SyncLoader } from "react-spinners";
 
 export default function WeatherWrapper() {
   const [unit, setUnit] = useState("metric");
@@ -44,70 +45,82 @@ export default function WeatherWrapper() {
   }, [!isSearch]);
 
   return (
-    <div className="max-width flex flex-col gap-4">
-      <WeatherNav
-        weather={weather}
-        setWeather={setWeather}
-        setDailyForecast={setDailyForecast}
-        setForecast={setForecast}
-        setError={setError}
-        unit={unit}
-        setUnit={setUnit}
-        setTrigger={setTrigger}
-        trigger={trigger}
-        city={city}
-        setCity={setCity}
-        forecastDay={forecastDay}
-        isSearch={isSearch}
-        setIsSearch={setIsSearch}
-        lat={lat}
-        lon={lon}
-        setLat={setLat}
-        setLon={setLon}
-      />
-      {weather ? (
-        error ? (
-          <ErrorPage />
-        ) : (
-          <div>
-            <div className="flex flex-col lg:flex-row gap-4 mb-4">
-              <WeatherMainInfo
-                unit={unit}
-                weather={weather}
-                dailyForecast={dailyForecast}
-              />
-              <div className="flex-1">
-                <div className="glass h-[300px] lg:h-full border-style rounded-xl overflow-hidden mb-4">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    style={{ border: "none" }}
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    src={`https://maps.google.com/maps?q=${lat},${lon}&z=${zoom}&output=embed`}
-                    title="google map"
-                  ></iframe>
+    <div>
+      {lat ? (
+        <div className="max-width flex flex-col gap-4">
+          <WeatherNav
+            weather={weather}
+            setWeather={setWeather}
+            setDailyForecast={setDailyForecast}
+            setForecast={setForecast}
+            setError={setError}
+            unit={unit}
+            setUnit={setUnit}
+            setTrigger={setTrigger}
+            trigger={trigger}
+            city={city}
+            setCity={setCity}
+            forecastDay={forecastDay}
+            isSearch={isSearch}
+            setIsSearch={setIsSearch}
+            lat={lat}
+            lon={lon}
+            setLat={setLat}
+            setLon={setLon}
+          />
+          {weather ? (
+            error ? (
+              <ErrorPage />
+            ) : (
+              <div>
+                <div className="flex flex-col lg:flex-row gap-4 mb-4">
+                  <WeatherMainInfo
+                    unit={unit}
+                    weather={weather}
+                    dailyForecast={dailyForecast}
+                  />
+                  <div className="flex-1">
+                    <div className="glass h-[300px] lg:h-full border-style rounded-xl overflow-hidden mb-4">
+                      <iframe
+                        width="100%"
+                        height="100%"
+                        style={{ border: "none" }}
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        src={`https://maps.google.com/maps?q=${lat},${lon}&z=${zoom}&output=embed`}
+                        title="google map"
+                      ></iframe>
+                    </div>
+                  </div>
                 </div>
+                {dailyForecast ? (
+                  <div className="flex flex-col lg:flex-row gap-4">
+                    <DailyForecast
+                      unit={unit}
+                      dailyForecast={dailyForecast.forecast.forecastday.slice(
+                        1
+                      )}
+                      forecastDay={forecastDay}
+                      setForecastDay={setForecastDay}
+                    />
+                    <ForecastWrapper
+                      unit={unit}
+                      dailyForecast={dailyForecast}
+                      forecast={forecast}
+                    />
+                  </div>
+                ) : null}
               </div>
-            </div>
-            {dailyForecast ? (
-              <div className="flex flex-col lg:flex-row gap-4">
-                <DailyForecast
-                  unit={unit}
-                  dailyForecast={dailyForecast.forecast.forecastday.slice(1)}
-                  forecastDay={forecastDay}
-                  setForecastDay={setForecastDay}
-                />
-                <ForecastWrapper
-                  unit={unit}
-                  dailyForecast={dailyForecast}
-                  forecast={forecast}
-                />
-              </div>
-            ) : null}
+            )
+          ) : null}
+        </div>
+      ) : (
+        <div className="grid place-items-center bg-[#0000009e] backdrop-blur-md inset-0 fixed h-full w-full">
+          <div>
+            <BeatLoader color="#116aa2" size={30} loading={true} />
           </div>
-        )
-      ) : null}
+        </div>
+      )}
     </div>
   );
 }
