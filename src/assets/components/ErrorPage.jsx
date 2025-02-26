@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ErrorPage() {
   return (
-    <div className="flex flex-col items-center pt-7">
+    <div className="flex flex-col items-center pt-12 lg:pt-7">
       <h1 className="mb-2">Hmmm, I can't find that location.</h1>
       <div className="relative">
         <p className="absolute text-[3rem] rotate-12 right-10 z-20">❓</p>
