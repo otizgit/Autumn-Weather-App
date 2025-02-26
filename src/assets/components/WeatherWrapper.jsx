@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import WeatherNav from "./WeatherNav";
 import WeatherMainInfo from "./WeatherMainInfo";
 import ForecastWrapper from "./ForecastWrapper";
@@ -11,23 +11,42 @@ export default function WeatherWrapper() {
   const [forecast, setForecast] = useState([]);
   const [dailyForecast, setDailyForecast] = useState([]);
   const [forecastDay, setForecastDay] = useState(3);
-
   const [city, setCity] = useState("");
   const [trigger, setTrigger] = useState(false);
   const [error, setError] = useState(false);
+  const [isSearch, setIsSearch] = useState(false);
+  const [lat, setLat] = useState(null);
+  const [lon, setLon] = useState(null);
 
-  let lat;
-  let lon;
   const zoom = 11;
 
-  if (weather) {
-    lat = weather.coord.lat;
-    lon = weather.coord.lon;
-  }
+  // useEffect(() => {
+  //   if (weather && isSearch) {
+  //     setLat(weather.coord.lat);
+  //     setLon(weather.coord.lon);
+  //   }
+  // }, [trigger]);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLat(position.coords.latitude);
+          setLon(position.coords.longitude);
+        },
+        (error) => {
+          alert("Error getting location:", error);
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }, [!isSearch]);
 
   return (
     <div className="max-width flex flex-col gap-4">
       <WeatherNav
+        weather={weather}
         setWeather={setWeather}
         setDailyForecast={setDailyForecast}
         setForecast={setForecast}
@@ -39,6 +58,12 @@ export default function WeatherWrapper() {
         city={city}
         setCity={setCity}
         forecastDay={forecastDay}
+        isSearch={isSearch}
+        setIsSearch={setIsSearch}
+        lat={lat}
+        lon={lon}
+        setLat={setLat}
+        setLon={setLon}
       />
       {weather ? (
         error ? (

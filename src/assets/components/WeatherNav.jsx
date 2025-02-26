@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react/dist/iconify.cjs";
 import axios from "axios";
 
 export default function WeatherNav({
+  weather,
   setWeather,
   setDailyForecast,
   setForecast,
@@ -14,14 +15,26 @@ export default function WeatherNav({
   city,
   setCity,
   forecastDay,
+  isSearch,
+  setIsSearch,
+  lat,
+  lon,
+  setLat,
+  setLon,
 }) {
   useEffect(() => {
     const fetchWeatherAndForecast = async () => {
       const apiKey = "644e8f48a2d7e612cd94f5dc157eb72c";
 
-      const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-      const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
-      const dailyForecastUrl = `https://api.weatherapi.com/v1/forecast.json?key=506e4d8cdfde415086e105419250901&q=${city}&days=${forecastDay}`;
+      const currentWeatherUrl = isSearch
+        ? `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+        : `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+      const forecastUrl = isSearch
+        ? `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`
+        : `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+      const dailyForecastUrl = isSearch
+        ? `https://api.weatherapi.com/v1/forecast.json?key=506e4d8cdfde415086e105419250901&q=${city}&days=${forecastDay}`
+        : `https://api.weatherapi.com/v1/forecast.json?key=506e4d8cdfde415086e105419250901&q=${lat},${lon}&days=${forecastDay}`;
 
       try {
         const [
@@ -43,7 +56,12 @@ export default function WeatherNav({
       }
     };
     fetchWeatherAndForecast();
-  }, [unit, trigger]);
+  }, [unit, lat, trigger]);
+
+  if (weather && isSearch) {
+    setLat(weather.coord.lat);
+    setLon(weather.coord.lon);
+  }
 
   const setToStandard = () => {
     setUnit("standard");
@@ -53,6 +71,7 @@ export default function WeatherNav({
   };
 
   const searchLocationData = (e) => {
+    setIsSearch(true);
     e.preventDefault();
     setTrigger((prevTrigger) => !prevTrigger);
   };
