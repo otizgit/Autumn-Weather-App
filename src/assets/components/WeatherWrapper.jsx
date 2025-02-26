@@ -29,7 +29,7 @@ export default function WeatherWrapper() {
           setLon(position.coords.longitude);
         },
         (error) => {
-          alert("Error getting location:", error);
+          alert("Please turn on your location.");
         }
       );
     } else {
