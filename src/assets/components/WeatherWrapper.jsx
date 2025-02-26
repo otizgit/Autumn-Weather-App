@@ -21,13 +21,6 @@ export default function WeatherWrapper() {
 
   const zoom = 11;
 
-  // useEffect(() => {
-  //   if (weather && isSearch) {
-  //     setLat(weather.coord.lat);
-  //     setLon(weather.coord.lon);
-  //   }
-  // }, [trigger]);
-
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
