@@ -4,7 +4,7 @@ import WeatherMainInfo from "./WeatherMainInfo";
 import ForecastWrapper from "./ForecastWrapper";
 import DailyForecast from "./DailyForecast";
 import ErrorPage from "./ErrorPage";
-import { BeatLoader, PuffLoader, RingLoader, SyncLoader } from "react-spinners";
+import { BeatLoader } from "react-spinners";
 
 export default function WeatherWrapper() {
   const [unit, setUnit] = useState("metric");
