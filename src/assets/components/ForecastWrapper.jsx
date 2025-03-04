@@ -1,5 +1,4 @@
 import React from "react";
-import ForecastCard from "./ForecastCard";
 import sun from "../img/sun.png";
 import LineChart from "./LineChart";
 
