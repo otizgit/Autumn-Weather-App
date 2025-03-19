@@ -107,7 +107,7 @@ export default function WeatherNav({
         <div className="flex items-center glass border-style font-medium rounded-full overflow-hidden small-fz">
           <button
             onClick={setToMetric}
-            className={`px-5 paddingY rounded-tl-full rounded-bl-full border-r-[0.1em] border-[#9a9a9a6d] ${
+            className={`px-5 paddingY rounded-tl-full font-semibold rounded-bl-full border-r-[0.1em] border-[#9a9a9a6d] ${
               unit == "metric" && "bg-primary"
             }`}
           >
@@ -115,7 +115,7 @@ export default function WeatherNav({
           </button>
           <button
             onClick={setToStandard}
-            className={`px-5 paddingY rounded-tr-full rounded-br-full hover:bg-primary ${
+            className={`px-5 paddingY rounded-tr-full font-semibold rounded-br-full hover:bg-primary ${
               unit == "standard" && "bg-primary"
             }`}
           >
