@@ -11,7 +11,7 @@ export default function WeatherWrapper() {
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
   const [dailyForecast, setDailyForecast] = useState([]);
-  const [forecastDay, setForecastDay] = useState(3);
+  const [forecastDay, setForecastDay] = useState(4);
   const [city, setCity] = useState("");
   const [trigger, setTrigger] = useState(false);
   const [error, setError] = useState(false);

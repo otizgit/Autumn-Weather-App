@@ -33,8 +33,8 @@ export default function WeatherNav({
         ? `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`
         : `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
       const dailyForecastUrl = isSearch
-        ? `https://api.weatherapi.com/v1/forecast.json?key=506e4d8cdfde415086e105419250901&q=${city}&days=${forecastDay}`
-        : `https://api.weatherapi.com/v1/forecast.json?key=506e4d8cdfde415086e105419250901&q=${lat},${lon}&days=${forecastDay}`;
+        ? `https://api.weatherapi.com/v1/forecast.json?key=19e70e7cec5c4ff9a01223743251903&q=${city}&days=${forecastDay}`
+        : `https://api.weatherapi.com/v1/forecast.json?key=19e70e7cec5c4ff9a01223743251903&q=${lat},${lon}&days=${forecastDay}`;
 
       try {
         const [
@@ -56,7 +56,7 @@ export default function WeatherNav({
       }
     };
     fetchWeatherAndForecast();
-  }, [unit, lat, trigger]);
+  }, [unit, lat, trigger, forecastDay]);
 
   if (weather && isSearch) {
     setLat(weather.coord.lat);

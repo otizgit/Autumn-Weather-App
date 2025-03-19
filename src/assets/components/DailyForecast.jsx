@@ -34,16 +34,16 @@ export default function DailyForecast({
     return `${weekday}, ${month} ${day}`;
   }
 
-  const forecastDaysArray = [3, 7, 10];
+  const forecastDaysArray = [4, 8, 11];
 
   const handleForecastDaysClick = (day) => {
     setForecastDay(day);
   };
 
   return (
-    <div className="lg:w-[360px] shadow-lg glass border-style rounded-xl p-5">
+    <div className="lg:w-[360px] shadow-lg glass border-style rounded-xl lg:h-[30.5rem] overflow-y-auto p-5">
       <h1 className="font-semibold custom-fz mb-2">Daily Forecast</h1>
-      <div className="mb-3 flex justify-between gap-2 bg-[#81818142] p-1 rounded-full">
+      <div className="mb-5 flex justify-between gap-2 bg-[#81818142] p-1 rounded-full">
         {forecastDaysArray.map((day) => (
           <button
             onClick={() => handleForecastDaysClick(day)}
@@ -52,11 +52,11 @@ export default function DailyForecast({
               day === forecastDay ? "bg-primary" : ""
             } font-medium hover:bg-primary rounded-full`}
           >
-            {day} days
+            {day - 1} days
           </button>
         ))}
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-3">
         {dailyForecast.map((forecast, index) => {
           return (
             <div
