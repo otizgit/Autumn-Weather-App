@@ -42,7 +42,7 @@ export default function DailyForecast({
 
   return (
     <div className="lg:w-[360px] shadow-lg glass border-style rounded-xl lg:h-[30.5rem] overflow-y-auto p-5">
-      <h1 className="font-semibold custom-fz mb-2">Daily Forecast</h1>
+      <h1 className="font-semibold custom-fz mb-3">Daily Forecast</h1>
       <div className="mb-5 flex justify-between gap-2 bg-[#81818142] p-1 rounded-full">
         {forecastDaysArray.map((day) => (
           <button
@@ -50,7 +50,7 @@ export default function DailyForecast({
             key={day}
             className={`text-[0.8rem] px-5 py-[0.3rem] ${
               day === forecastDay ? "bg-primary" : ""
-            } font-medium hover:bg-primary rounded-full`}
+            } hover:bg-primary rounded-full font-semibold`}
           >
             {day - 1} days
           </button>
